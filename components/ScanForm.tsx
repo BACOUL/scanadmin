@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { calculateScan, ScanInput } from '../lib/calculations';
+import styles from './ScanForm.module.css';
 
 const initialInput: ScanInput = {
   sector: 'Services',
@@ -39,16 +40,15 @@ export function ScanForm() {
   }
 
   return (
-    <form onSubmit={submit} className="card scan-form">
-      <div className="scan-section">
+    <form onSubmit={submit} className={`card ${styles.form}`}>
+      <div className={styles.section}>
         <h2>1. Votre entreprise</h2>
         <div className="grid grid-2">
           <label>Secteur<input className="input" value={input.sector} onChange={(e) => setInput({ ...input, sector: e.target.value })} /></label>
           <label>Coût horaire estimé (€)<input className="input" type="number" inputMode="decimal" value={input.hourlyCost} onChange={(e) => updateNumber('hourlyCost', e.target.value)} /></label>
         </div>
       </div>
-
-      <div className="scan-section">
+      <div className={styles.section}>
         <h2>2. Mails, devis et relances</h2>
         <div className="grid grid-2">
           <label>Mails importants / jour<input className="input" type="number" inputMode="numeric" value={input.emailsPerDay} onChange={(e) => updateNumber('emailsPerDay', e.target.value)} /></label>
@@ -59,8 +59,7 @@ export function ScanForm() {
           <label>Minutes par relance<input className="input" type="number" inputMode="numeric" value={input.minutesPerFollowUp} onChange={(e) => updateNumber('minutesPerFollowUp', e.target.value)} /></label>
         </div>
       </div>
-
-      <div className="scan-section">
+      <div className={styles.section}>
         <h2>3. Documents et dossiers</h2>
         <div className="grid grid-2">
           <label>Heures factures / semaine<input className="input" type="number" inputMode="decimal" value={input.invoiceHoursPerWeek} onChange={(e) => updateNumber('invoiceHoursPerWeek', e.target.value)} /></label>
@@ -69,16 +68,14 @@ export function ScanForm() {
           <label>Minutes par dossier<input className="input" type="number" inputMode="numeric" value={input.minutesPerClientFile} onChange={(e) => updateNumber('minutesPerClientFile', e.target.value)} /></label>
         </div>
       </div>
-
-      <div className="scan-section">
+      <div className={styles.section}>
         <h2>4. Organisation</h2>
         <div className="grid grid-2">
           <label>Heures planning / semaine<input className="input" type="number" inputMode="decimal" value={input.planningHoursPerWeek} onChange={(e) => updateNumber('planningHoursPerWeek', e.target.value)} /></label>
           <label>Heures reporting / semaine<input className="input" type="number" inputMode="decimal" value={input.reportingHoursPerWeek} onChange={(e) => updateNumber('reportingHoursPerWeek', e.target.value)} /></label>
         </div>
       </div>
-
-      <div className="scan-submit">
+      <div className={styles.submit}>
         <p>Vos données restent dans votre navigateur pour cette estimation.</p>
         <button className="button" type="submit">Voir mon résultat</button>
       </div>
