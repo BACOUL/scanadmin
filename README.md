@@ -4,6 +4,14 @@
 
 ScanAdmin aide les PME à mesurer le coût de leurs tâches administratives répétitives, puis à recommander les agents IA supervisés les plus rentables à mettre en place.
 
+## Site déployé
+
+Première URL Vercel :
+
+```txt
+https://scanadmin.vercel.app/
+```
+
 ## Phrase centrale
 
 > Découvrez combien vos tâches administratives répétitives vous coûtent chaque mois, et quels agents IA peuvent vous faire gagner du temps et de l'argent.
@@ -72,8 +80,8 @@ Accueil → Scan → Résultat → Agents recommandés → Demande d'analyse per
 
 ## Prochaine priorité
 
-1. Merger la branche `init-mvp`.
-2. Vérifier `npm install`.
-3. Vérifier `npm run build`.
-4. Déployer sur Vercel.
+1. Vérifier le parcours en production.
+2. Connecter `scanadmin.fr` à Vercel.
+3. Améliorer la landing page mobile.
+4. Ajouter une vraie capture de lead.
 5. Tester le scan avec 5 PME.
