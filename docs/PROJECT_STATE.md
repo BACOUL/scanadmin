@@ -2,7 +2,13 @@
 
 ## État actuel
 
-Le projet est en phase d'initialisation MVP.
+Le projet est en phase d'initialisation MVP et dispose déjà d'un premier déploiement Vercel.
+
+URL Vercel actuelle :
+
+```txt
+https://scanadmin.vercel.app/
+```
 
 Le repo contient déjà :
 
@@ -16,15 +22,15 @@ Le repo contient déjà :
 - composants de résultat ;
 - formulaire de scan côté client.
 
-## Branche de travail initiale
+## Branche principale
 
-La première branche de travail est :
+La branche `main` contient maintenant la base initiale du projet.
+
+La première branche de travail historique était :
 
 ```txt
 init-mvp
 ```
-
-Une fois la PR initiale mergée dans `main`, cette branche devient l'historique de départ du projet.
 
 ## Produit visé
 
@@ -43,6 +49,8 @@ Nom de marque : ScanAdmin.
 
 Domaine cible : `scanadmin.fr` si réservé par Jeason.
 
+Domaine temporaire Vercel : `https://scanadmin.vercel.app/`.
+
 ## Statut fonctionnel V1
 
 Fonctionnalités déjà prévues ou amorcées :
@@ -55,14 +63,14 @@ Fonctionnalités déjà prévues ou amorcées :
 
 ## Ce qu'il reste à faire immédiatement
 
-1. Vérifier que `npm install` fonctionne.
-2. Vérifier que `npm run build` passe.
-3. Corriger les erreurs TypeScript éventuelles.
-4. Améliorer le design mobile.
-5. Ajouter les métadonnées SEO.
-6. Ajouter une vraie capture de lead.
-7. Connecter Vercel.
-8. Connecter le domaine.
+1. Vérifier le parcours en production : accueil → scan → résultat.
+2. Corriger les erreurs éventuelles de build ou d'affichage.
+3. Améliorer le design mobile.
+4. Ajouter les métadonnées SEO.
+5. Ajouter une vraie capture de lead.
+6. Connecter le domaine `scanadmin.fr`.
+7. Remplacer le lien mailto par un formulaire complet.
+8. Tester le scan avec 5 PME.
 
 ## Décision stratégique
 
