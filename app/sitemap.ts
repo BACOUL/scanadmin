@@ -1,0 +1,1 @@
+export default function sitemap(){const base='https://scanadmin.vercel.app';return ['/','/scan','/analyse','/tarifs','/contact','/method','/legal'].map((path)=>({url:base+path,lastModified:new Date()}))}

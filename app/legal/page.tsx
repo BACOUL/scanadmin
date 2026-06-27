@@ -1,11 +1,1 @@
-export default function LegalPage() {
-  return (
-    <main className="container page-section">
-      <h1 className="page-title">Informations du site</h1>
-      <div className="card content-card">
-        <p>Page d’information à compléter avant lancement commercial.</p>
-        <p>Contact : contact@scanadmin.fr</p>
-      </div>
-    </main>
-  );
-}
+export default function LegalPage(){return <main className="container page-section"><h1 className="page-title">Informations du site</h1><div className="card content-card"><h2>Editeur</h2><p>Les informations completes de l'editeur seront ajoutees avant le lancement commercial.</p><h2>Hebergement</h2><p>Le site est deploye avec Vercel.</p><h2>Responsabilite</h2><p>Les resultats ScanAdmin sont des estimations. Ils ne garantissent pas un gain reel sans analyse personnalisee.</p></div></main>}
