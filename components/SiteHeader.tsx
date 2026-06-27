@@ -6,13 +6,14 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className={`container header-inner ${styles.wrap}`}>
-        <span className={styles.logo}><Logo compact /></span>
+        <Link href="/" className={styles.logo} aria-label="Accueil ScanAdmin"><Logo compact /></Link>
 
         <nav className="header-nav" aria-label="Navigation principale">
           <Link href="/scan">Scan</Link>
-          <Link href="/methodologie">Méthodologie</Link>
+          <Link href="/method">Méthode</Link>
           <Link href="/catalogue">Agents IA</Link>
           <Link href="/guides">Guides</Link>
+          <Link href="/secteurs">Secteurs</Link>
           <Link href="/tarifs">Tarifs</Link>
           <Link href="/contact">Contact</Link>
         </nav>
@@ -28,11 +29,13 @@ export function SiteHeader() {
           <div className={styles.panel}>
             <Link href="/">Accueil</Link>
             <Link href="/scan">Scan</Link>
-            <Link href="/methodologie">Méthodologie</Link>
+            <Link href="/method">Méthode</Link>
             <Link href="/catalogue">Agents IA</Link>
-            <Link href="/pourquoi-scanadmin">Pourquoi ScanAdmin</Link>
+            <Link href="/cas-usages">Cas d’usage</Link>
             <Link href="/guides">Guides</Link>
             <Link href="/secteurs">Secteurs</Link>
+            <Link href="/comparatif">Comparatif</Link>
+            <Link href="/pourquoi-scanadmin">Pourquoi ScanAdmin</Link>
             <Link href="/tarifs">Tarifs</Link>
             <Link href="/contact">Contact</Link>
             <Link className={`button ${styles.cta}`} href="/scan">Lancer mon scan gratuit</Link>
