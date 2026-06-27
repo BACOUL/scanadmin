@@ -31,6 +31,7 @@ export function SiteHeader() {
             <Link href="/methodologie">Méthodologie</Link>
             <Link href="/catalogue">Agents IA</Link>
             <Link href="/guides">Guides</Link>
+            <Link href="/secteurs">Secteurs</Link>
             <Link href="/tarifs">Tarifs</Link>
             <Link href="/contact">Contact</Link>
             <Link className={`button ${styles.cta}`} href="/scan">Lancer mon scan gratuit</Link>
