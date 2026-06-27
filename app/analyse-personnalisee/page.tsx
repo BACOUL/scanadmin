@@ -5,7 +5,7 @@ const deliverables = [
   ['Matrice des priorités', 'Classement des tâches selon volume, coût, répétition, risque et facilité de vérification.'],
   ['Top 3 actions', 'Les trois tâches à traiter en premier avec une justification claire et exploitable.'],
   ['Agent IA recommandé', 'Le premier agent IA supervisé à tester, son rôle, ses limites et son mode de validation humaine.'],
-  ['Plan de mise en place', 'Un plan simple sur 7 à 14 jours pour tester sans perturber l’organisation.'],
+  ['Plan de test 7 à 14 jours', 'Un plan simple pour tester sans perturber l’organisation ni automatiser trop vite.'],
   ['Synthèse dirigeant', 'Une conclusion courte : quoi faire, quoi éviter, et combien le problème coûte probablement.'],
 ];
 
@@ -17,8 +17,8 @@ const notIncluded = [
 ];
 
 export const metadata = {
-  title: 'Analyse personnalisée ScanAdmin à 200 € | Diagnostic IA administratif PME',
-  description: 'Ce que contient l’analyse personnalisée ScanAdmin : diagnostic chiffré, priorités, agent IA recommandé et plan d’action pour PME.',
+  title: 'Analyse personnalisée ScanAdmin | Diagnostic IA administratif PME',
+  description: 'Analyse personnalisée ScanAdmin : diagnostic chiffré, priorités, agent IA recommandé et plan d’action pour PME. Prix normal 490 €, offre de lancement 200 €.',
 };
 
 export default function AnalysePersonnaliseePage() {
@@ -26,12 +26,12 @@ export default function AnalysePersonnaliseePage() {
     <main className="container page-section">
       <p style={{ color: '#0f766e', fontWeight: 800 }}>Analyse personnalisée</p>
       <h1 className="page-title">Transformez votre scan en plan d’action concret</h1>
-      <p className="page-lead">Le scan gratuit donne une première estimation. L’analyse personnalisée à 200 € sert à vérifier les chiffres, classer les priorités et définir le premier agent IA supervisé à tester.</p>
+      <p className="page-lead">Le scan gratuit donne une première estimation. L’analyse personnalisée transforme ce résultat brut en décision exploitable : priorités, risques, premier agent IA à tester et plan d’action.</p>
 
       <section className="card content-card" style={{ marginTop: 28, background: '#102033', color: '#fff' }}>
         <p style={{ color: '#5eead4', fontWeight: 800, marginTop: 0 }}>Offre de lancement</p>
-        <h2 style={{ color: '#fff', fontSize: 38, marginBottom: 8 }}>200 €</h2>
-        <p style={{ color: '#d8e3ee', fontSize: 18, lineHeight: 1.65 }}>Une analyse claire, lisible et orientée décision pour savoir si votre administratif répétitif mérite un agent IA supervisé.</p>
+        <h2 style={{ color: '#fff', fontSize: 42, marginBottom: 8 }}>200 €</h2>
+        <p style={{ color: '#d8e3ee', fontSize: 18, lineHeight: 1.65 }}>Prix normal prévu : <strong style={{ color: '#fff' }}>490 €</strong>. Tarif de lancement réservé aux premiers clients afin d’améliorer la méthode ScanAdmin.</p>
         <Link className="button" href="/analyse">Demander mon analyse</Link>
       </section>
 
@@ -49,9 +49,9 @@ export default function AnalysePersonnaliseePage() {
       </section>
 
       <section className="card content-card">
-        <h2>Pourquoi cela vaut 200 € ?</h2>
-        <p>Parce que le problème n’est pas de trouver une IA. Le vrai problème est de savoir quelle tâche automatiser en premier sans perdre du temps, de l’argent ou du contrôle.</p>
-        <p>Une mauvaise automatisation peut coûter plus cher que la tâche elle-même : mauvais outil, mauvais processus, trop de risques, trop peu de volume. L’analyse sert à éviter cette erreur.</p>
+        <h2>Pourquoi le prix normal est fixé à 490 € ?</h2>
+        <p>Une analyse professionnelle ne consiste pas à relire un formulaire. Elle sert à éviter une mauvaise décision IA : mauvais outil, mauvaise tâche, volume trop faible, risque trop élevé ou automatisation impossible à vérifier.</p>
+        <p>Le prix normal de 490 € correspond à une prestation de diagnostic court mais sérieux : vérification des chiffres, priorisation, recommandation, limites et plan de test. L’offre de lancement à 200 € permet d’obtenir ce livrable à tarif réduit pendant la phase de construction de la méthode.</p>
         <div className="grid grid-3" style={{ marginTop: 22 }}>
           <div><strong>Éviter</strong><p style={{ color: '#5d6b7a' }}>un outil IA inutile ou mal ciblé.</p></div>
           <div><strong>Prioriser</strong><p style={{ color: '#5d6b7a' }}>la tâche qui coûte vraiment du temps.</p></div>
