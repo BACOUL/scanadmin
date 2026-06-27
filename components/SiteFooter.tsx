@@ -13,14 +13,21 @@ export function SiteFooter() {
           <h3>Produit</h3>
           <Link href="/scan">Lancer le scan</Link>
           <Link href="/methodologie">Méthodologie</Link>
-          <Link href="/agents">Agents IA</Link>
+          <Link href="/catalogue">Agents IA</Link>
           <Link href="/tarifs">Tarifs</Link>
+          <Link href="/exemple">Rapport exemple</Link>
+        </div>
+        <div>
+          <h3>Ressources</h3>
+          <Link href="/guides">Guides IA PME</Link>
+          <Link href="/guides/audit-ia-pme">Audit IA PME</Link>
+          <Link href="/guides/agent-ia-administratif">Agent IA administratif</Link>
+          <Link href="/faq">FAQ</Link>
         </div>
         <div>
           <h3>Entreprise</h3>
           <Link href="/contact">Contact</Link>
-          <Link href="/rapport-exemple">Rapport exemple</Link>
-          <Link href="/mentions-legales">Mentions légales</Link>
+          <Link href="/legal">Informations légales</Link>
           <Link href="/confidentialite">Confidentialité</Link>
         </div>
       </div>

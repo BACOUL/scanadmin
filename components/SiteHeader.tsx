@@ -11,7 +11,8 @@ export function SiteHeader() {
         <nav className="header-nav" aria-label="Navigation principale">
           <Link href="/scan">Scan</Link>
           <Link href="/methodologie">Méthodologie</Link>
-          <Link href="/agents">Agents IA</Link>
+          <Link href="/catalogue">Agents IA</Link>
+          <Link href="/guides">Guides</Link>
           <Link href="/tarifs">Tarifs</Link>
           <Link href="/contact">Contact</Link>
         </nav>
@@ -28,7 +29,8 @@ export function SiteHeader() {
             <Link href="/">Accueil</Link>
             <Link href="/scan">Scan</Link>
             <Link href="/methodologie">Méthodologie</Link>
-            <Link href="/agents">Agents IA</Link>
+            <Link href="/catalogue">Agents IA</Link>
+            <Link href="/guides">Guides</Link>
             <Link href="/tarifs">Tarifs</Link>
             <Link href="/contact">Contact</Link>
             <Link className={`button ${styles.cta}`} href="/scan">Lancer mon scan gratuit</Link>
