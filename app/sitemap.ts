@@ -8,6 +8,7 @@ export default function sitemap() {
     '/scan',
     '/result',
     '/analyse',
+    '/analyse-personnalisee',
     '/merci',
     '/tarifs',
     '/contact',
