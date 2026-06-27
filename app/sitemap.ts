@@ -1,4 +1,5 @@
 import { guides } from '../lib/guides';
+import { sectors } from '../lib/sectors';
 
 export default function sitemap() {
   const base = 'https://scanadmin.vercel.app';
@@ -14,12 +15,14 @@ export default function sitemap() {
     '/catalogue',
     '/exemple',
     '/guides',
+    '/secteurs',
     '/faq',
     '/legal',
     '/confidentialite',
   ];
   const guidePaths = guides.map((guide) => `/guides/${guide.slug}`);
-  return [...staticPaths, ...guidePaths].map((path) => ({
+  const sectorPaths = sectors.map((sector) => `/secteurs/${sector.slug}`);
+  return [...staticPaths, ...guidePaths, ...sectorPaths].map((path) => ({
     url: base + path,
     lastModified: new Date(),
   }));
