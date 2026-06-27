@@ -10,6 +10,14 @@ URL Vercel actuelle :
 https://scanadmin.vercel.app/
 ```
 
+Le parcours de base a été testé sur mobile le 27 juin 2026 :
+
+```txt
+Accueil → /scan → /result
+```
+
+Résultat observé : le scan affiche correctement le temps administratif estimé, le coût mensuel, le coût annuel, le temps récupérable et les agents IA recommandés.
+
 Le repo contient déjà :
 
 - documentation produit ;
@@ -53,7 +61,7 @@ Domaine temporaire Vercel : `https://scanadmin.vercel.app/`.
 
 ## Statut fonctionnel V1
 
-Fonctionnalités déjà prévues ou amorcées :
+Fonctionnalités déjà validées ou amorcées :
 
 - `/` : landing page.
 - `/scan` : formulaire de scan.
@@ -63,14 +71,14 @@ Fonctionnalités déjà prévues ou amorcées :
 
 ## Ce qu'il reste à faire immédiatement
 
-1. Vérifier le parcours en production : accueil → scan → résultat.
-2. Corriger les erreurs éventuelles de build ou d'affichage.
-3. Améliorer le design mobile.
+1. Améliorer la page résultat pour expliquer ce que signifient les chiffres.
+2. Ajouter une vraie capture de lead à la place du lien mailto.
+3. Ajouter une page de confirmation `/merci`.
 4. Ajouter les métadonnées SEO.
-5. Ajouter une vraie capture de lead.
-6. Connecter le domaine `scanadmin.fr`.
-7. Remplacer le lien mailto par un formulaire complet.
-8. Tester le scan avec 5 PME.
+5. Connecter le domaine `scanadmin.fr`.
+6. Ajouter un avertissement visible : estimation non garantie.
+7. Tester le scan avec 5 PME.
+8. Créer un exemple de rapport PDF.
 
 ## Décision stratégique
 
