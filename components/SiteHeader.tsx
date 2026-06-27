@@ -30,6 +30,7 @@ export function SiteHeader() {
             <Link href="/scan">Scan</Link>
             <Link href="/methodologie">Méthodologie</Link>
             <Link href="/catalogue">Agents IA</Link>
+            <Link href="/pourquoi-scanadmin">Pourquoi ScanAdmin</Link>
             <Link href="/guides">Guides</Link>
             <Link href="/secteurs">Secteurs</Link>
             <Link href="/tarifs">Tarifs</Link>
