@@ -18,19 +18,19 @@ export function SiteFooter() {
           <Link href="/exemple">Rapport exemple</Link>
         </div>
         <div>
+          <h3>Confiance</h3>
+          <Link href="/qui-sommes-nous">Qui sommes-nous</Link>
+          <Link href="/pourquoi-scanadmin">Pourquoi ScanAdmin</Link>
+          <Link href="/securite">Sécurité</Link>
+          <Link href="/limites">Limites</Link>
+          <Link href="/comparatif">Comparatif</Link>
+        </div>
+        <div>
           <h3>Ressources</h3>
           <Link href="/guides">Guides IA PME</Link>
           <Link href="/secteurs">Pages secteurs</Link>
-          <Link href="/guides/audit-ia-pme">Audit IA PME</Link>
-          <Link href="/guides/agent-ia-administratif">Agent IA administratif</Link>
+          <Link href="/cas-usages">Cas d’usage</Link>
           <Link href="/faq">FAQ</Link>
-        </div>
-        <div>
-          <h3>Secteurs</h3>
-          <Link href="/secteurs/btp">BTP</Link>
-          <Link href="/secteurs/transport-logistique">Transport</Link>
-          <Link href="/secteurs/nettoyage-professionnel">Nettoyage</Link>
-          <Link href="/secteurs/securite-privee">Sécurité privée</Link>
         </div>
         <div>
           <h3>Entreprise</h3>
