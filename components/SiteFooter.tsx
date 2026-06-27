@@ -13,7 +13,7 @@ export function SiteFooter() {
           <h3>Produit</h3>
           <Link href="/scan">Lancer le scan</Link>
           <Link href="/methodologie">Méthodologie</Link>
-          <Link href="/agents">Agents IA</Link>
+          <Link href="/catalogue">Agents IA</Link>
           <Link href="/tarifs">Tarifs</Link>
           <Link href="/exemple">Rapport exemple</Link>
         </div>
