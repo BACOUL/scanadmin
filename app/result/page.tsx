@@ -42,6 +42,16 @@ export default function ResultPage() {
       </div>
 
       <div className="card" style={{ padding: 28, marginTop: 24 }}>
+        <h2>Ce que cela signifie</h2>
+        <p style={{ color: '#5d6b7a' }}>
+          Votre entreprise consacre environ <strong>{result.totalMonthlyHours} h/mois</strong> à des tâches administratives répétitives. Cela représente environ <strong>{result.monthlyCost.toLocaleString('fr-FR')} € / mois</strong> selon le coût horaire indiqué dans le scan.
+        </p>
+        <p style={{ marginBottom: 0, color: '#5d6b7a' }}>
+          Ces résultats sont indicatifs : ils servent à identifier les tâches à analyser en priorité, pas à garantir un gain réel sans audit personnalisé.
+        </p>
+      </div>
+
+      <div className="card" style={{ padding: 28, marginTop: 24 }}>
         <h2>Temps potentiellement récupérable avec agents IA supervisés</h2>
         <p style={{ fontSize: 28, fontWeight: 700, color: '#0f766e' }}>
           {result.lowRecoverableHours} à {result.highRecoverableHours} h/mois
@@ -71,7 +81,7 @@ export default function ResultPage() {
         <p style={{ color: '#5d6b7a' }}>
           L'étape suivante consiste à vérifier vos réponses, préciser les tâches et définir l'agent IA le plus rentable à tester.
         </p>
-        <a className="button" href="mailto:contact@scanadmin.fr?subject=Analyse personnalisée ScanAdmin">Demander mon analyse</a>
+        <Link className="button" href="/analyse">Recevoir mon analyse personnalisée</Link>
       </div>
     </main>
   );
