@@ -1,0 +1,1 @@
+export default function Page(){return <main className="container page-section"><h1 className="page-title">Tarifs</h1><div className="card content-card"><p>Scan gratuit. Analyse personnalisee et audit a venir.</p></div></main>}

@@ -1,0 +1,1 @@
+export default function Page(){return <main className="container page-section"><h1 className="page-title">Contact</h1><div className="card content-card"><p>Formulaire de contact a venir.</p></div></main>}
