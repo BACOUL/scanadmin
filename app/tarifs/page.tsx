@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'Tarifs ScanAdmin | Scan administratif IA pour PME',
-  description: 'Tarifs ScanAdmin : scan gratuit, analyse personnalisée à 200 € et mise en place d’agents IA supervisés pour PME.',
+  description: 'Tarifs ScanAdmin : scan gratuit, analyse personnalisée prix normal 490 €, offre de lancement 200 €, et agents IA supervisés sur devis.',
 };
 
 export default function Page() {
@@ -23,7 +23,8 @@ export default function Page() {
           <p style={{ color: '#0f766e', fontWeight: 800, marginTop: 0 }}>Offre de lancement</p>
           <h2>Analyse personnalisée</h2>
           <p>Diagnostic chiffré, matrice de priorités, top 3 actions, premier agent IA recommandé et plan de test.</p>
-          <strong style={{ fontSize: 28 }}>200 €</strong>
+          <strong style={{ fontSize: 30 }}>200 €</strong>
+          <p style={{ color: '#5d6b7a' }}>Prix normal prévu : <strong>490 €</strong></p>
           <p><Link href="/analyse-personnalisee" style={{ color: '#0f766e', fontWeight: 800 }}>Voir ce qui est inclus →</Link></p>
         </div>
         <div className="card content-card">
@@ -35,9 +36,9 @@ export default function Page() {
       </div>
 
       <section className="card content-card" style={{ marginTop: 28 }}>
-        <h2>Pourquoi l’analyse personnalisée est l’étape la plus importante ?</h2>
-        <p>Un scan gratuit donne une estimation. Mais avant de mettre en place un agent IA, il faut vérifier les volumes, comprendre les risques et choisir une seule tâche prioritaire.</p>
-        <p>Les 200 € servent à transformer un résultat brut en décision claire : quoi traiter, pourquoi, avec quel agent, quelles limites et quel plan de test.</p>
+        <h2>Pourquoi afficher 490 € comme prix normal ?</h2>
+        <p>Parce qu’une analyse sérieuse ne se limite pas à relire un formulaire. Elle doit vérifier les chiffres, identifier les priorités, clarifier les risques, recommander le premier agent IA supervisé et proposer un plan de test.</p>
+        <p>L’offre de lancement à 200 € permet d’obtenir ce livrable à tarif réduit pendant que la méthode ScanAdmin est améliorée avec les premiers clients.</p>
         <Link className="button" href="/analyse-personnalisee">Voir l’analyse personnalisée</Link>
       </section>
     </main>
