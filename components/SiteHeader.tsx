@@ -13,7 +13,7 @@ export function SiteHeader() {
           <Link href="/tarifs">Tarifs</Link>
           <Link href="/contact">Contact</Link>
         </nav>
-        <Link className="button header-cta" href="/scan">Lancer mon scan gratuit</Link>
+        <Link className="button header-cta" href="/scan">Scan gratuit</Link>
       </div>
     </header>
   );
