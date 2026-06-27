@@ -1,1 +1,3 @@
-export default function Page(){return <main className="container page-section"><h1 className="page-title">Contact</h1><div className="card content-card"><p>Formulaire de contact a venir.</p></div></main>}
+import Link from 'next/link';
+
+export default function Page(){return <main className="container page-section"><p style={{color:'#0f766e',fontWeight:700}}>Contact</p><h1 className="page-title">Contacter ScanAdmin</h1><p className="page-lead">Pour une demande serieuse, commencez par le scan puis envoyez une demande d'analyse personnalisee.</p><div className="card content-card"><h2>Demande prioritaire</h2><p>Le parcours conseille est simple : scan, resultat, analyse personnalisee.</p><Link className="button" href="/scan">Lancer mon scan gratuit</Link><h2>Suite</h2><p>Une page de contact complete sera ajoutee avec formulaire et suivi des demandes.</p></div></main>}
