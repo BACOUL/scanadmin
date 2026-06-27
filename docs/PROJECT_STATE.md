@@ -27,18 +27,17 @@ Le repo contient déjà :
 - landing page ;
 - page de scan ;
 - page résultat ;
+- page d'analyse personnalisée ;
+- page de confirmation ;
 - composants de résultat ;
-- formulaire de scan côté client.
+- formulaire de scan côté client ;
+- formulaire de demande d'analyse.
 
 ## Branche principale
 
-La branche `main` contient maintenant la base initiale du projet.
+La branche `main` contient la base initiale du projet.
 
-La première branche de travail historique était :
-
-```txt
-init-mvp
-```
+La branche `lead-capture-v1` ajoute la première version de capture lead.
 
 ## Produit visé
 
@@ -66,19 +65,21 @@ Fonctionnalités déjà validées ou amorcées :
 - `/` : landing page.
 - `/scan` : formulaire de scan.
 - `/result` : résultat du scan depuis localStorage.
+- `/analyse` : demande d'analyse personnalisée.
+- `/merci` : confirmation de demande.
+- `/api/leads` : endpoint de réception de formulaire, à connecter ensuite à un vrai envoi email ou stockage.
 - `lib/calculations.ts` : calcul du temps et du coût administratif.
 - `lib/agents.ts` : catalogue des agents IA.
 
 ## Ce qu'il reste à faire immédiatement
 
-1. Améliorer la page résultat pour expliquer ce que signifient les chiffres.
-2. Ajouter une vraie capture de lead à la place du lien mailto.
-3. Ajouter une page de confirmation `/merci`.
-4. Ajouter les métadonnées SEO.
-5. Connecter le domaine `scanadmin.fr`.
-6. Ajouter un avertissement visible : estimation non garantie.
-7. Tester le scan avec 5 PME.
-8. Créer un exemple de rapport PDF.
+1. Tester le nouveau parcours : résultat → analyse → merci.
+2. Connecter `/api/leads` à un vrai service d'email ou de stockage.
+3. Ajouter les métadonnées SEO.
+4. Connecter le domaine `scanadmin.fr`.
+5. Tester le scan avec 5 PME.
+6. Créer un exemple de rapport PDF.
+7. Ajouter les pages méthodologie, tarifs et agents.
 
 ## Décision stratégique
 
