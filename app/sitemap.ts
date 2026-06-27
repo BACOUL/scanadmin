@@ -17,6 +17,12 @@ export default function sitemap() {
     '/guides',
     '/secteurs',
     '/faq',
+    '/qui-sommes-nous',
+    '/pourquoi-scanadmin',
+    '/securite',
+    '/limites',
+    '/cas-usages',
+    '/comparatif',
     '/legal',
     '/confidentialite',
   ];
