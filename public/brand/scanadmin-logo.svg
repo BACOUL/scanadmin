@@ -1,0 +1,24 @@
+<svg width="520" height="140" viewBox="0 0 520 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ScanAdmin</title>
+  <desc id="desc">Logo ScanAdmin avec document scanné et validation administrative</desc>
+  <rect width="520" height="140" rx="28" fill="white"/>
+  <g transform="translate(24 25)">
+    <path d="M18 6H6V18" stroke="#0f9f8a" stroke-width="6" stroke-linecap="round"/>
+    <path d="M86 6H98V18" stroke="#0f9f8a" stroke-width="6" stroke-linecap="round"/>
+    <path d="M18 92H6V80" stroke="#0f9f8a" stroke-width="6" stroke-linecap="round"/>
+    <path d="M86 92H98V80" stroke="#0f9f8a" stroke-width="6" stroke-linecap="round"/>
+    <path d="M26 18H67L88 39V82C88 87.5 83.5 92 78 92H26C20.5 92 16 87.5 16 82V28C16 22.5 20.5 18 26 18Z" fill="white" stroke="#102033" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M67 18V36C67 39.3 69.7 42 73 42H88" fill="#102033"/>
+    <path d="M34 47H63" stroke="#102033" stroke-width="6" stroke-linecap="round"/>
+    <path d="M34 61H73" stroke="#102033" stroke-width="6" stroke-linecap="round"/>
+    <path d="M34 75H54" stroke="#102033" stroke-width="6" stroke-linecap="round"/>
+    <rect x="35" y="84" width="10" height="16" rx="2" fill="#0f9f8a"/>
+    <rect x="51" y="73" width="10" height="27" rx="2" fill="#0f9f8a"/>
+    <rect x="67" y="64" width="10" height="36" rx="2" fill="#0f9f8a"/>
+    <circle cx="88" cy="82" r="24" fill="#0f9f8a"/>
+    <path d="M77 82.5L84.5 90L100 73" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="158" y="88" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800" letter-spacing="-2">
+    <tspan fill="#102033">Scan</tspan><tspan fill="#0f9f8a">Admin</tspan>
+  </text>
+</svg>
