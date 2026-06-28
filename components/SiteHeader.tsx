@@ -12,6 +12,7 @@ export function SiteHeader() {
           <Link href="/scan">Scan</Link>
           <Link href="/method">Méthode</Link>
           <Link href="/catalogue">Agents IA</Link>
+          <Link href="/taches">Tâches</Link>
           <Link href="/guides">Guides</Link>
           <Link href="/secteurs">Secteurs</Link>
           <Link href="/tarifs">Tarifs</Link>
@@ -31,6 +32,7 @@ export function SiteHeader() {
             <Link href="/scan">Scan</Link>
             <Link href="/method">Méthode</Link>
             <Link href="/catalogue">Agents IA</Link>
+            <Link href="/taches">Tâches administratives</Link>
             <Link href="/cas-usages">Cas d’usage</Link>
             <Link href="/guides">Guides</Link>
             <Link href="/secteurs">Secteurs</Link>
