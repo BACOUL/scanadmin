@@ -1,15 +1,13 @@
 import { guides } from '../lib/guides';
 import { sectors } from '../lib/sectors';
 
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://scanadmin.fr').replace(/\/$/, '');
+
 export default function sitemap() {
-  const base = 'https://scanadmin.vercel.app';
   const staticPaths = [
     '/',
     '/scan',
-    '/result',
-    '/analyse',
     '/analyse-personnalisee',
-    '/merci',
     '/tarifs',
     '/contact',
     '/method',
@@ -27,10 +25,12 @@ export default function sitemap() {
     '/legal',
     '/confidentialite',
   ];
+
   const guidePaths = guides.map((guide) => `/guides/${guide.slug}`);
   const sectorPaths = sectors.map((sector) => `/secteurs/${sector.slug}`);
+
   return [...staticPaths, ...guidePaths, ...sectorPaths].map((path) => ({
-    url: base + path,
+    url: siteUrl + path,
     lastModified: new Date(),
   }));
 }
