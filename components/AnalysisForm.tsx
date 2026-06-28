@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 type ScanSummary = {
@@ -22,6 +21,19 @@ type LeadForm = {
   consent: boolean;
 };
 
+type LeadResponse = {
+  ok: boolean;
+  leadId?: string;
+  error?: string;
+};
+
+type CheckoutResponse = {
+  ok: boolean;
+  url?: string;
+  sessionId?: string;
+  error?: string;
+};
+
 const initialForm: LeadForm = {
   firstName: '',
   lastName: '',
@@ -34,7 +46,6 @@ const initialForm: LeadForm = {
 };
 
 export function AnalysisForm() {
-  const router = useRouter();
   const [form, setForm] = useState<LeadForm>(initialForm);
   const [scanResult, setScanResult] = useState<ScanSummary | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -72,20 +83,42 @@ export function AnalysisForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/leads', {
+      const leadResponse = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, scanResult }),
       });
 
-      if (!response.ok) {
-        throw new Error('Lead submission failed');
+      const leadData = (await leadResponse.json()) as LeadResponse;
+
+      if (!leadResponse.ok || !leadData.ok || !leadData.leadId) {
+        throw new Error(leadData.error || 'Lead submission failed');
       }
 
-      localStorage.setItem('scanadmin:lastLead', JSON.stringify({ ...form, scanResult, createdAt: new Date().toISOString() }));
-      router.push('/merci');
+      localStorage.setItem('scanadmin:lastLead', JSON.stringify({ ...form, scanResult, leadId: leadData.leadId, createdAt: new Date().toISOString() }));
+
+      const checkoutResponse = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          leadId: leadData.leadId,
+          email: form.email,
+          company: form.company,
+          firstName: form.firstName,
+          lastName: form.lastName,
+          sector: form.sector,
+        }),
+      });
+
+      const checkoutData = (await checkoutResponse.json()) as CheckoutResponse;
+
+      if (!checkoutResponse.ok || !checkoutData.ok || !checkoutData.url) {
+        throw new Error(checkoutData.error || 'Checkout creation failed');
+      }
+
+      window.location.href = checkoutData.url;
     } catch {
-      setError('Impossible d’envoyer votre demande pour le moment. Réessayez dans quelques instants.');
+      setError('Impossible de lancer le paiement pour le moment. Vérifiez vos informations puis réessayez.');
       setIsSubmitting(false);
     }
   }
@@ -94,14 +127,14 @@ export function AnalysisForm() {
     <form onSubmit={submit} className="card" style={{ padding: 24 }}>
       {scanResult ? (
         <div style={{ background: '#e9fbf7', borderRadius: 18, padding: 18, marginBottom: 22 }}>
-          <p style={{ marginTop: 0, color: '#0f766e', fontWeight: 700 }}>Votre scan sera joint à la demande</p>
+          <p style={{ marginTop: 0, color: '#0f766e', fontWeight: 700 }}>Votre scan sera joint à la commande</p>
           <p style={{ marginBottom: 0, color: '#102033' }}>
             {scanResult.totalMonthlyHours} h/mois estimées, {scanResult.monthlyCost?.toLocaleString('fr-FR')} € / mois, {scanResult.lowRecoverableHours} à {scanResult.highRecoverableHours} h/mois récupérables.
           </p>
         </div>
       ) : (
         <div style={{ background: '#fff7ed', borderRadius: 18, padding: 18, marginBottom: 22 }}>
-          <p style={{ margin: 0, color: '#9a3412' }}>Aucun résultat de scan détecté. Vous pouvez quand même demander une analyse.</p>
+          <p style={{ margin: 0, color: '#9a3412' }}>Aucun résultat de scan détecté. Vous pouvez quand même commander une analyse.</p>
         </div>
       )}
 
@@ -124,7 +157,7 @@ export function AnalysisForm() {
       {error ? <p style={{ color: '#b91c1c', fontWeight: 700 }}>{error}</p> : null}
 
       <button className="button" style={{ marginTop: 24 }} type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Envoi en cours...' : 'Recevoir mon analyse personnalisée'}
+        {isSubmitting ? 'Redirection vers le paiement...' : 'Commander mon analyse — 200 €'}
       </button>
     </form>
   );
