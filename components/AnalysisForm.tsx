@@ -11,6 +11,10 @@ type ScanSummary = {
   highRecoverableHours?: number;
 };
 
+type SavedInput = {
+  sector?: unknown;
+};
+
 type LeadForm = {
   firstName: string;
   lastName: string;
@@ -50,6 +54,55 @@ const initialForm: LeadForm = {
   immediateExecution: false,
 };
 
+function isNumber(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function isScanSummary(value: unknown): value is ScanSummary {
+  if (!value || typeof value !== 'object') return false;
+
+  const candidate = value as ScanSummary;
+
+  return (
+    isNumber(candidate.totalMonthlyHours) &&
+    isNumber(candidate.monthlyCost) &&
+    isNumber(candidate.annualCost) &&
+    isNumber(candidate.lowRecoverableHours) &&
+    isNumber(candidate.highRecoverableHours)
+  );
+}
+
+function parseLocalJson<T>(key: string) {
+  const saved = localStorage.getItem(key);
+  if (!saved) return null;
+
+  try {
+    return JSON.parse(saved) as T;
+  } catch {
+    localStorage.removeItem(key);
+    return null;
+  }
+}
+
+function readSavedResult() {
+  const parsed = parseLocalJson<unknown>('scanadmin:lastResult');
+  if (!parsed) return null;
+
+  if (isScanSummary(parsed)) return parsed;
+
+  localStorage.removeItem('scanadmin:lastResult');
+  return null;
+}
+
+function readSavedInputSector() {
+  const parsed = parseLocalJson<SavedInput>('scanadmin:lastInput');
+  if (!parsed || typeof parsed !== 'object') return '';
+
+  if (typeof parsed.sector === 'string') return parsed.sector;
+
+  return '';
+}
+
 export function AnalysisForm() {
   const [form, setForm] = useState<LeadForm>(initialForm);
   const [scanResult, setScanResult] = useState<ScanSummary | null>(null);
@@ -57,18 +110,15 @@ export function AnalysisForm() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const savedResult = localStorage.getItem('scanadmin:lastResult');
-    const savedInput = localStorage.getItem('scanadmin:lastInput');
+    const savedResult = readSavedResult();
+    const savedSector = readSavedInputSector();
 
     if (savedResult) {
-      setScanResult(JSON.parse(savedResult));
+      setScanResult(savedResult);
     }
 
-    if (savedInput) {
-      const input = JSON.parse(savedInput);
-      if (input.sector) {
-        setForm((current) => ({ ...current, sector: input.sector }));
-      }
+    if (savedSector) {
+      setForm((current) => ({ ...current, sector: savedSector }));
     }
   }, []);
 
