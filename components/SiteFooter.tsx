@@ -37,6 +37,7 @@ export function SiteFooter() {
           <h3>Entreprise</h3>
           <Link href="/contact">Contact</Link>
           <Link href="/legal">Informations légales</Link>
+          <Link href="/cgv">CGV</Link>
           <Link href="/confidentialite">Confidentialité</Link>
         </div>
       </div>
