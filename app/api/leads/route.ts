@@ -15,6 +15,8 @@ type LeadPayload = {
   sector?: unknown;
   message?: unknown;
   consent?: unknown;
+  termsAccepted?: unknown;
+  immediateExecution?: unknown;
   scanResult?: ScanResult | null;
 };
 
@@ -30,6 +32,8 @@ type Lead = {
   sector: string;
   message: string;
   consent: true;
+  termsAccepted: true;
+  immediateExecution: true;
   scanResult: ScanResult | null;
   meta: {
     referrer: string;
@@ -65,7 +69,16 @@ function createLead(payload: LeadPayload, request: Request): Lead | null {
   const sector = clean(payload.sector, MAX_LENGTHS.sector);
   const message = clean(payload.message, MAX_LENGTHS.message);
 
-  if (!firstName || !lastName || !company || !email || !isValidEmail(email) || payload.consent !== true) {
+  if (
+    !firstName ||
+    !lastName ||
+    !company ||
+    !email ||
+    !isValidEmail(email) ||
+    payload.consent !== true ||
+    payload.termsAccepted !== true ||
+    payload.immediateExecution !== true
+  ) {
     return null;
   }
 
@@ -81,6 +94,8 @@ function createLead(payload: LeadPayload, request: Request): Lead | null {
     sector,
     message,
     consent: true,
+    termsAccepted: true,
+    immediateExecution: true,
     scanResult: payload.scanResult ?? null,
     meta: {
       referrer: request.headers.get('referer') ?? '',
@@ -110,6 +125,9 @@ function formatLeadText(lead: Lead) {
     `Téléphone: ${lead.phone || 'Non renseigné'}`,
     `Secteur: ${lead.sector || 'Non renseigné'}`,
     `Message: ${lead.message || 'Non renseigné'}`,
+    `Consentement contact: oui`,
+    `CGV acceptées: oui`,
+    `Exécution après paiement demandée: oui`,
     ``,
     `Résultat scan`,
     `Heures mensuelles estimées: ${scan?.totalMonthlyHours ?? 'Non disponible'}`,
