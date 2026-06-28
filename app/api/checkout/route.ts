@@ -48,7 +48,7 @@ export async function POST(request: Request) {
       customer_email: email,
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${siteUrl}/paiement/succes?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${siteUrl}/paiement/annule?lead_id=${encodeURIComponent(leadId)}`,
+      cancel_url: `${siteUrl}/paiement/retour?lead_id=${encodeURIComponent(leadId)}`,
       client_reference_id: leadId,
       metadata: {
         leadId,
