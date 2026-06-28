@@ -97,7 +97,7 @@ export default function UseCasesPage() {
             <p className="hero-subtitle">ScanAdmin aide les PME à repérer les tâches administratives qui méritent vraiment un test IA : fréquentes, répétitives, coûteuses et vérifiables.</p>
             <div className="hero-actions">
               <Link className="button" href="/scan">Identifier mes cas d’usage</Link>
-              <Link className="ghost-button" href="/catalogue">Voir les agents IA</Link>
+              <Link className="ghost-button" href="/taches">Voir les tâches administratives</Link>
             </div>
             <p className="hero-note">Objectif : commencer par le cas le plus simple à tester, pas par l’automatisation la plus spectaculaire.</p>
           </div>
@@ -149,6 +149,7 @@ export default function UseCasesPage() {
                   <p><strong>Problème :</strong> {item.pain}</p>
                   <p><strong>Agent adapté :</strong> {item.agent}</p>
                   <p><strong>Validation humaine :</strong> {item.humanCheck}</p>
+                  {item.title === 'Préparer les devis simples' ? <Link className="ghost-button" href="/taches/devis">Lire la page devis</Link> : null}
                 </div>
                 <div className="deliverable-preview" style={{ boxShadow: 'none' }}>
                   <div className="deliverable-header"><span>Ce que l’IA prépare</span><strong>Supervisé</strong></div>
