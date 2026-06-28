@@ -83,6 +83,26 @@ export default function Page() {
         </div>
       </section>
 
+      <section className="container premium-section comparison-section">
+        <div className="section-heading">
+          <p className="section-kicker">Tâches reliées</p>
+          <h2>Voir les tâches administratives qui peuvent être préparées par IA.</h2>
+          <p>L’exemple BTP recommande les devis simples, mais ScanAdmin analyse aussi les relances, les emails, les documents entrants et les tâches plus sensibles.</p>
+        </div>
+        <div className="comparison-grid">
+          <div className="comparison-card highlight-card">
+            <h3>Tâches administratives</h3>
+            <p>Comprendre quelles tâches traiter en premier avec l’IA, selon la fréquence, le risque et la facilité de validation.</p>
+            <Link className="ghost-button" href="/taches">Voir les tâches</Link>
+          </div>
+          <div className="comparison-card muted-card">
+            <h3>Page devis</h3>
+            <p>Voir pourquoi la préparation de devis simples est souvent un bon premier test IA supervisé.</p>
+            <Link className="ghost-button" href="/taches/devis">Lire la page devis</Link>
+          </div>
+        </div>
+      </section>
+
       <section className="container premium-section split-section reversed">
         <div className="deliverable-preview">
           <div className="deliverable-header"><span>Agent recommandé</span><strong>Devis supervisé</strong></div>
