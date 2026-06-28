@@ -29,6 +29,7 @@ export function SiteFooter() {
         <div>
           <h3>Ressources</h3>
           <Link href="/guides">Guides IA PME</Link>
+          <Link href="/taches">Tâches administratives</Link>
           <Link href="/secteurs">Pages secteurs</Link>
           <Link href="/cas-usages">Cas d’usage</Link>
           <Link href="/faq">FAQ</Link>
