@@ -15,7 +15,12 @@ Cette checklist sert de document unique avant mise en ligne publique.
 - Pages SEO guides et secteurs refaites.
 - Navigation corrigée.
 - Redirections corrigées.
+- Sitemap et robots préparés pour `scanadmin.fr`.
 - API leads renforcée.
+- Stripe Checkout intégré dans le tunnel d’analyse.
+- Webhook Stripe ajouté.
+- Pages paiement ajoutées.
+- Modèle de livrable d’analyse créé.
 - Déploiement Vercel non vérifié tant que la connexion/build Vercel n’est pas disponible.
 
 ## 1. Vercel — actions obligatoires
@@ -26,25 +31,40 @@ Cette checklist sert de document unique avant mise en ligne publique.
 - [ ] Lancer un déploiement de `main`.
 - [ ] Vérifier que le build passe sans erreur.
 - [ ] Vérifier l’URL temporaire Vercel.
-- [ ] Vérifier le domaine final si configuré : `scanadmin.fr`.
+- [ ] Vérifier le domaine final : `scanadmin.fr`.
 - [ ] Vérifier que les redirections fonctionnent.
 - [ ] Vérifier que le sitemap est accessible.
 - [ ] Vérifier que `robots.txt` est accessible.
+- [ ] Vérifier que les headers noindex fonctionnent sur les pages tunnel.
 
-## 2. Variables d’environnement
+## 2. Variables d’environnement obligatoires
 
-### Capture de leads — option webhook
+### Domaine
 
-À configurer si les leads partent vers Make, Zapier, n8n, Airtable, Google Sheets ou un CRM.
+```env
+NEXT_PUBLIC_SITE_URL="https://scanadmin.fr"
+```
+
+### Stripe Checkout
+
+```env
+STRIPE_SECRET_KEY="sk_live_..."
+STRIPE_ANALYSIS_PRICE_ID="price_..."
+STRIPE_WEBHOOK_SECRET="whsec_..."
+```
+
+### Capture de leads — webhook ou email
+
+Au moins une destination fiable doit être configurée.
+
+Webhook :
 
 ```env
 SCANADMIN_LEADS_WEBHOOK_URL="https://votre-webhook..."
 SCANADMIN_LEADS_WEBHOOK_SECRET="secret-optionnel"
 ```
 
-### Capture de leads — option email Resend
-
-À configurer si les leads doivent arriver par email.
+Email via Resend :
 
 ```env
 RESEND_API_KEY="re_xxxxxxxxx"
@@ -52,26 +72,91 @@ SCANADMIN_LEADS_TO_EMAIL="contact@scanadmin.fr"
 SCANADMIN_LEADS_FROM_EMAIL="ScanAdmin <leads@scanadmin.fr>"
 ```
 
+### Notification paiements Stripe
+
+Recommandé :
+
+```env
+SCANADMIN_PAYMENTS_TO_EMAIL="contact@scanadmin.fr"
+SCANADMIN_PAYMENTS_FROM_EMAIL="ScanAdmin <paiements@scanadmin.fr>"
+```
+
+Option webhook paiements :
+
+```env
+SCANADMIN_PAYMENTS_WEBHOOK_URL="https://votre-webhook..."
+SCANADMIN_PAYMENTS_WEBHOOK_SECRET="secret-optionnel"
+```
+
 ### Règle de lancement
 
-- [ ] Ne pas lancer publiquement sans au moins une destination de lead fiable.
-- [ ] Le fallback logs serveur est acceptable pour test, mais pas comme configuration finale.
+- [ ] Ne pas lancer publiquement sans destination fiable pour les leads.
+- [ ] Ne pas lancer publiquement sans paiement Stripe testé.
+- [ ] Ne pas utiliser le fallback logs serveur comme configuration finale.
 
-## 3. Email officiel
+## 3. Configuration Stripe
+
+### Produit Stripe
+
+Créer un produit :
+
+```txt
+Analyse personnalisée ScanAdmin
+```
+
+### Prix Stripe
+
+Créer un prix unique :
+
+```txt
+200 €
+Paiement unique
+EUR
+```
+
+Copier le `price_...` dans :
+
+```env
+STRIPE_ANALYSIS_PRICE_ID="price_..."
+```
+
+### Webhook Stripe
+
+Créer un endpoint :
+
+```txt
+https://scanadmin.fr/api/stripe/webhook
+```
+
+Événement obligatoire :
+
+```txt
+checkout.session.completed
+```
+
+Copier le secret dans :
+
+```env
+STRIPE_WEBHOOK_SECRET="whsec_..."
+```
+
+## 4. Email officiel
 
 - [ ] Créer ou vérifier l’adresse `contact@scanadmin.fr`.
 - [ ] Vérifier que cette adresse reçoit bien les emails.
 - [ ] Si Resend est utilisé, vérifier le domaine d’envoi.
+- [ ] Créer ou vérifier l’adresse d’envoi `paiements@scanadmin.fr` si utilisée.
 - [ ] Remplacer l’adresse dans le site si une autre adresse est choisie.
 
-Pages concernées :
+Pages / docs concernées :
 
 - `/contact`
 - `/legal`
 - `/confidentialite`
 - `docs/LEAD_CAPTURE_PRODUCTION.md`
+- `docs/STRIPE_CHECKOUT_SETUP.md`
 
-## 4. Tests formulaire
+## 5. Tests formulaire et tunnel complet
 
 ### Test scan gratuit
 
@@ -81,18 +166,30 @@ Pages concernées :
 - [ ] Vérifier que les estimations s’affichent.
 - [ ] Vérifier le CTA vers l’analyse personnalisée.
 
-### Test analyse personnalisée
+### Test commande analyse payante
 
-- [ ] Aller sur `/analyse-personnalisee` après un scan.
-- [ ] Vérifier que le résultat du scan est joint.
+- [ ] Aller sur `/analyse` après un scan.
+- [ ] Vérifier que le résultat du scan est joint à la commande.
 - [ ] Remplir le formulaire.
 - [ ] Cocher le consentement.
-- [ ] Envoyer la demande.
-- [ ] Vérifier la redirection vers `/merci`.
-- [ ] Vérifier que le lead arrive par webhook ou email.
-- [ ] Vérifier les logs Vercel pour confirmer qu’il n’y a pas d’erreur `SCANADMIN_LEAD_DELIVERY_FAILED`.
+- [ ] Cliquer sur `Commander mon analyse — 200 €`.
+- [ ] Vérifier que le lead est créé.
+- [ ] Vérifier la redirection vers Stripe Checkout.
+- [ ] Faire un paiement test Stripe.
+- [ ] Vérifier l’arrivée sur `/paiement/succes`.
+- [ ] Vérifier que l’événement Stripe `checkout.session.completed` apparaît.
+- [ ] Vérifier que le webhook `/api/stripe/webhook` reçoit l’événement.
+- [ ] Vérifier que la notification paiement arrive par email ou webhook.
+- [ ] Vérifier les logs Vercel : aucune erreur `SCANADMIN_CHECKOUT_FAILED`.
+- [ ] Vérifier les logs Vercel : aucune erreur `SCANADMIN_PAYMENT_NOTIFICATION_FAILED`.
 
-## 5. Tests API leads
+### Test retour sans paiement
+
+- [ ] Depuis Stripe Checkout, revenir sans payer.
+- [ ] Vérifier l’arrivée sur `/paiement/retour`.
+- [ ] Vérifier que l’analyse n’est pas considérée comme payée.
+
+## 6. Tests API leads
 
 Tester manuellement `POST /api/leads` avec un payload valide.
 
@@ -138,7 +235,34 @@ ou :
 }
 ```
 
-## 6. Tests navigation
+## 7. Tests API Checkout
+
+Tester `POST /api/checkout` après création d’un lead.
+
+Payload attendu :
+
+```json
+{
+  "leadId": "lead_...",
+  "email": "jean@example.com",
+  "company": "Entreprise Test",
+  "firstName": "Jean",
+  "lastName": "Test",
+  "sector": "BTP"
+}
+```
+
+Réponse attendue :
+
+```json
+{
+  "ok": true,
+  "url": "https://checkout.stripe.com/...",
+  "sessionId": "cs_..."
+}
+```
+
+## 8. Tests navigation
 
 Pages principales à vérifier :
 
@@ -147,7 +271,8 @@ Pages principales à vérifier :
 - [ ] `/result`
 - [ ] `/analyse`
 - [ ] `/analyse-personnalisee`
-- [ ] `/merci`
+- [ ] `/paiement/succes`
+- [ ] `/paiement/retour`
 - [ ] `/method`
 - [ ] `/catalogue`
 - [ ] `/cas-usages`
@@ -171,25 +296,29 @@ Redirections à vérifier :
 - [ ] `/rapport` → `/exemple`
 - [ ] `/pricing` → `/tarifs`
 
-## 7. Tests mobile
+## 9. Tests mobile
 
 - [ ] Header visible.
 - [ ] Menu mobile ouvert correctement.
 - [ ] CTA scan visible.
 - [ ] Formulaire scan utilisable.
 - [ ] Formulaire analyse utilisable.
+- [ ] Redirection Stripe Checkout utilisable sur mobile.
 - [ ] Pages longues lisibles.
 - [ ] Tableaux lisibles avec scroll horizontal.
 - [ ] Footer lisible.
 
 Point connu : le menu mobile utilise encore `<details>` et ne se ferme pas automatiquement au clic. Ce n’est pas bloquant, mais améliorable.
 
-## 8. SEO technique
+## 10. SEO technique
 
 - [ ] Vérifier les titres de pages.
 - [ ] Vérifier les descriptions meta.
 - [ ] Vérifier le sitemap.
 - [ ] Vérifier `robots.txt`.
+- [ ] Vérifier que le sitemap utilise `https://scanadmin.fr`.
+- [ ] Vérifier que `/result`, `/analyse`, `/merci` ne sont pas dans le sitemap.
+- [ ] Vérifier que `/paiement/succes` et `/paiement/retour` ne sont pas indexables.
 - [ ] Vérifier que les pages guides sont indexables.
 - [ ] Vérifier que les pages secteurs sont indexables.
 - [ ] Ajouter le domaine dans Google Search Console.
@@ -198,10 +327,10 @@ Point connu : le menu mobile utilise encore `<details>` et ne se ferme pas autom
 Sitemap attendu :
 
 ```txt
-/sitemap.xml
+https://scanadmin.fr/sitemap.xml
 ```
 
-## 9. SEO contenu prioritaire
+## 11. SEO contenu prioritaire
 
 Pages à pousser en priorité :
 
@@ -215,7 +344,7 @@ Pages à pousser en priorité :
 - `/comparatif`
 - `/cas-usages`
 
-## 10. Juridique / confiance
+## 12. Juridique / confiance
 
 À vérifier avant lancement commercial :
 
@@ -225,8 +354,9 @@ Pages à pousser en priorité :
 - [ ] Informations fiscales si applicables.
 - [ ] Adresse email officielle.
 - [ ] Hébergeur.
-- [ ] Politique de confidentialité cohérente avec les outils réellement branchés.
-- [ ] Si paiement ajouté plus tard : créer CGV complètes.
+- [ ] Politique de confidentialité cohérente avec les outils réellement branchés : Stripe, Resend, webhook, éventuel CRM.
+- [ ] Ajouter ou préparer des CGV adaptées à l’analyse personnalisée payante.
+- [ ] Vérifier la politique de remboursement si elle est affichée ou communiquée.
 
 Pages concernées :
 
@@ -234,8 +364,9 @@ Pages concernées :
 - `/confidentialite`
 - `/tarifs`
 - `/contact`
+- `/analyse-personnalisee`
 
-## 11. Prix et offre
+## 13. Prix et offre
 
 Prix actuellement affichés :
 
@@ -248,51 +379,103 @@ Prix actuellement affichés :
 
 - [ ] Prix cohérents sur `/tarifs`.
 - [ ] Prix cohérents sur `/analyse-personnalisee`.
+- [ ] Prix cohérent dans Stripe : 200 € TTC ou HT selon décision juridique/comptable.
 - [ ] Message clair : 200 € = offre de lancement.
-- [ ] Pas de paiement automatique tant que Stripe n’est pas prêt.
+- [ ] Le bouton de commande lance bien Stripe Checkout.
+- [ ] Le paiement confirmé déclenche bien une notification interne.
 
-## 12. Tracking et analytics
+## 14. Livrable d’analyse
+
+Document de référence :
+
+```txt
+docs/ANALYSIS_DELIVERABLE_TEMPLATE.md
+```
+
+Avant le lancement :
+
+- [ ] Relire le modèle de livrable.
+- [ ] Vérifier que le modèle est livrable à un client réel.
+- [ ] Préparer une version exemple anonymisée si besoin.
+- [ ] Vérifier que le livrable ne promet aucun gain garanti.
+- [ ] Vérifier que le livrable mentionne la validation humaine.
+- [ ] Préparer un format de livraison : PDF, Google Docs exporté ou document envoyé par email.
+
+## 15. Process après paiement
+
+Document de référence :
+
+```txt
+docs/PAID_ANALYSIS_PROCESS.md
+```
+
+Process officiel :
+
+```txt
+Scan gratuit
+→ demande d’analyse
+→ création lead
+→ paiement Stripe Checkout 200 €
+→ confirmation paiement
+→ production analyse
+→ livraison
+→ relance qualité
+```
+
+À vérifier :
+
+- [ ] Un lead non payé ne déclenche pas la production.
+- [ ] Un paiement confirmé crée une action interne claire.
+- [ ] Le client sait quoi attendre après paiement.
+- [ ] Le délai de livraison est cohérent.
+
+## 16. Tracking et analytics
 
 Non obligatoire au premier lancement, mais recommandé.
 
 - [ ] Ajouter un outil analytics léger si souhaité.
 - [ ] Ne pas ajouter de tracking sans mettre à jour la confidentialité si nécessaire.
-- [ ] Suivre au minimum : visites, scans lancés, scans terminés, clic analyse, formulaires envoyés.
+- [ ] Suivre au minimum : visites, scans lancés, scans terminés, clic analyse, formulaires envoyés, Checkout lancé, paiement confirmé.
 
-## 13. Checklist finale de lancement
+## 17. Checklist finale de lancement
 
 Le site peut être lancé publiquement seulement si :
 
 - [ ] Le build Vercel passe.
 - [ ] Le domaine fonctionne.
 - [ ] Le formulaire de lead envoie réellement les demandes.
+- [ ] Stripe Checkout fonctionne en test.
+- [ ] Le webhook Stripe fonctionne.
+- [ ] Une notification paiement arrive bien.
 - [ ] Les pages principales répondent en 200.
 - [ ] Les redirections principales fonctionnent.
-- [ ] Les pages légales sont cohérentes.
+- [ ] Les pages légales sont cohérentes avec un service payant.
 - [ ] L’adresse de contact fonctionne.
 - [ ] Le sitemap est accessible.
 - [ ] Le scan gratuit fonctionne sur mobile.
+- [ ] Le livrable d’analyse est prêt à être rempli.
 
-## 14. Priorités après lancement
+## 18. Priorités après lancement
 
 Après mise en ligne :
 
 1. Tester 10 scans réels.
-2. Obtenir 3 à 5 demandes d’analyse.
-3. Appeler ou contacter chaque lead manuellement.
-4. Noter les objections.
-5. Améliorer les pages selon les objections réelles.
-6. Créer les premiers cas clients anonymisés.
-7. Ajouter Stripe uniquement quand l’offre est confirmée.
+2. Obtenir 3 à 5 lancements Checkout.
+3. Obtenir 1 à 2 paiements à 200 €.
+4. Livrer les premières analyses avec `docs/ANALYSIS_DELIVERABLE_TEMPLATE.md`.
+5. Noter les objections.
+6. Améliorer les pages selon les objections réelles.
+7. Créer les premiers cas clients anonymisés.
+8. Améliorer l’automatisation seulement après preuve de paiement.
 
-## 15. Décision importante
+## 19. Décision importante
 
 ScanAdmin ne doit pas être lancé comme un simple site vitrine.
 
 Le lancement doit vérifier une chose :
 
 ```txt
-Est-ce que des PME comprennent le problème, lancent le scan, puis demandent une analyse ?
+Est-ce que des PME comprennent le problème, lancent le scan, puis paient une analyse personnalisée ?
 ```
 
 C’est le vrai signal de départ.
