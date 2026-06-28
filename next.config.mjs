@@ -10,6 +10,22 @@ const nextConfig = {
       { source: '/pricing', destination: '/tarifs', permanent: false },
     ];
   },
+  async headers() {
+    return [
+      {
+        source: '/result',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+      {
+        source: '/analyse',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+      {
+        source: '/merci',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
