@@ -23,6 +23,7 @@ Cette checklist sert de document unique avant mise en ligne publique.
 - Page CGV ajoutée.
 - Acceptation CGV ajoutée au formulaire de commande.
 - Demande d’exécution après paiement ajoutée au formulaire.
+- Page confidentialité mise à jour avec Stripe, Resend, webhook et commande d’analyse.
 - Modèle de livrable d’analyse créé.
 - Déploiement Vercel non vérifié tant que la connexion/build Vercel n’est pas disponible.
 
@@ -367,7 +368,8 @@ Pages à pousser en priorité :
 - [ ] Adresse email officielle.
 - [ ] Hébergeur.
 - [ ] Page `/cgv` relue et complétée.
-- [ ] Politique de confidentialité cohérente avec les outils réellement branchés : Stripe, Resend, webhook, éventuel CRM.
+- [ ] Page `/confidentialite` relue avec les outils réellement branchés.
+- [ ] Politique de confidentialité cohérente avec les outils réellement branchés : Stripe, Resend, webhook, éventuel CRM ou analytics.
 - [ ] Prix 200 € clarifié : TTC ou HT selon décision juridique/comptable.
 - [ ] Politique de remboursement cohérente avec le service vendu.
 - [ ] Droit de rétractation / exécution anticipée validé selon le type de clientèle réellement visé.
