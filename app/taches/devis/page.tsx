@@ -46,7 +46,7 @@ export default function DevisTaskPage() {
             <p className="hero-subtitle">Un agent IA peut aider une PME ou un artisan à préparer une première version de devis simple. Mais le prix, les délais et l’envoi doivent rester validés par un humain.</p>
             <div className="hero-actions">
               <Link className="button" href="/scan">Estimer mon coût administratif</Link>
-              <Link className="ghost-button" href="/exemple">Voir un exemple de livrable</Link>
+              <Link className="ghost-button" href="/taches">Voir toutes les tâches</Link>
             </div>
             <p className="hero-note">Principe ScanAdmin : l’IA prépare, l’humain valide. Aucun gain n’est garanti sans test réel.</p>
           </div>
