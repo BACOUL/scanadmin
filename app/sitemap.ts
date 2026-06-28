@@ -25,6 +25,7 @@ export default function sitemap() {
     '/legal',
     '/cgv',
     '/confidentialite',
+    '/taches/devis',
   ];
 
   const guidePaths = guides.map((guide) => `/guides/${guide.slug}`);
