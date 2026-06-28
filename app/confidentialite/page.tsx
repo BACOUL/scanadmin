@@ -3,8 +3,17 @@ import Link from 'next/link';
 const collected = [
   ['Scan gratuit', 'Volumes de tâches, temps estimé, coût horaire indicatif, secteur ou informations nécessaires au calcul.'],
   ['Résultat du scan', 'Estimation du temps administratif, coût mensuel, coût annuel, potentiel récupérable et agents potentiels.'],
-  ['Demande d’analyse', 'Nom, email, entreprise, téléphone si fourni, secteur, message et résumé du besoin.'],
-  ['Navigation', 'Données techniques minimales pouvant être nécessaires au fonctionnement du site et à la sécurité.'],
+  ['Commande d’analyse', 'Nom, email, entreprise, téléphone si fourni, secteur, message, consentement de contact, acceptation des CGV et demande d’exécution après paiement.'],
+  ['Paiement', 'Statut de paiement, identifiant de session Stripe, montant, devise, email client et métadonnées nécessaires au rapprochement avec la commande.'],
+  ['Navigation et sécurité', 'Données techniques minimales pouvant être nécessaires au fonctionnement du site, à la sécurité, aux logs serveur et au diagnostic d’incident.'],
+];
+
+const tools = [
+  ['Navigateur', 'Le résultat du scan peut être conservé localement dans votre navigateur afin d’afficher la page de résultat et poursuivre vers la commande.'],
+  ['Serveur ScanAdmin', 'Les informations du formulaire peuvent être transmises au serveur pour créer un lead, préparer une commande et notifier ScanAdmin.'],
+  ['Stripe', 'Stripe traite le paiement de l’analyse personnalisée. ScanAdmin ne stocke pas les données complètes de carte bancaire.'],
+  ['Resend ou email', 'Si configuré, les demandes et notifications de paiement peuvent être transmises par email à ScanAdmin.'],
+  ['Webhook ou outil de suivi', 'Si configuré, les leads ou paiements peuvent être envoyés vers un outil interne de suivi, un tableur, un CRM ou un outil d’automatisation.'],
 ];
 
 const notRequested = [
@@ -12,34 +21,37 @@ const notRequested = [
   'Accès à votre comptabilité',
   'Accès direct à vos boîtes mail',
   'Documents clients confidentiels sans accord clair',
-  'Données bancaires hors prestataire de paiement sécurisé',
+  'Données bancaires complètes hors prestataire de paiement sécurisé',
   'Informations sensibles inutiles au diagnostic',
 ];
 
 const purposes = [
   ['Produire le résultat du scan', 'Transformer vos réponses en estimation administrative indicative.'],
-  ['Répondre à une demande', 'Vous recontacter si vous demandez une analyse ou une information complémentaire.'],
+  ['Créer la demande ou commande', 'Créer un lead, associer le scan à une commande et permettre le paiement de l’analyse.'],
+  ['Traiter le paiement', 'Rediriger vers Stripe Checkout, confirmer le paiement et rapprocher le paiement de la demande.'],
   ['Préparer une analyse personnalisée', 'Comprendre vos tâches, vos priorités et les cas d’usage IA à vérifier.'],
+  ['Assurer le suivi client', 'Vous contacter si une information manque, livrer l’analyse et assurer un suivi après livraison.'],
   ['Améliorer la méthode', 'Identifier les formulaires, pages ou explications à rendre plus claires.'],
 ];
 
 const principles = [
-  ['Minimisation', 'Ne collecter que les informations utiles au scan, à l’analyse ou au contact.'],
+  ['Minimisation', 'Ne collecter que les informations utiles au scan, à l’analyse, au paiement ou au contact.'],
   ['Transparence', 'Expliquer clairement pourquoi une information est demandée.'],
+  ['Séparation paiement', 'Ne pas stocker les données complètes de carte bancaire dans ScanAdmin : le paiement est traité par Stripe.'],
   ['Supervision humaine', 'Ne pas confier une décision administrative ou commerciale à l’IA seule.'],
   ['Prudence', 'Présenter les résultats comme des estimations, pas comme des garanties.'],
 ];
 
 const rights = [
-  ['Accès', 'Demander quelles informations vous concernant ont été transmises.'],
+  ['Accès', 'Demander quelles informations vous concernant ont été transmises ou conservées.'],
   ['Rectification', 'Corriger une information inexacte ou incomplète.'],
-  ['Suppression', 'Demander la suppression d’une demande ou d’informations conservées.'],
+  ['Suppression', 'Demander la suppression d’une demande ou d’informations conservées, lorsque cela est possible au regard des obligations de suivi, paiement ou facturation.'],
   ['Opposition', 'Demander à ne plus être recontacté dans le cadre de votre demande.'],
 ];
 
 export const metadata = {
-  title: 'Confidentialité ScanAdmin | Données du scan IA administratif PME',
-  description: 'Politique de confidentialité ScanAdmin : données collectées, usage du scan IA administratif, demandes d’analyse, limites IA et droits utilisateur.',
+  title: 'Confidentialité ScanAdmin | Données, scan IA administratif et paiement',
+  description: 'Politique de confidentialité ScanAdmin : données collectées, scan IA administratif, commande d’analyse, paiement Stripe, notifications et droits utilisateur.',
 };
 
 export default function ConfidentialitePage() {
@@ -50,12 +62,12 @@ export default function ConfidentialitePage() {
           <div className="hero-copy">
             <p className="badge">Confidentialité ScanAdmin</p>
             <h1>Vos données administratives doivent être traitées avec prudence.</h1>
-            <p className="hero-subtitle">ScanAdmin est conçu pour mesurer des tâches administratives, pas pour aspirer vos données internes. Le site doit collecter le minimum utile au scan, à l’analyse et au contact.</p>
+            <p className="hero-subtitle">ScanAdmin est conçu pour mesurer des tâches administratives, traiter une commande d’analyse et préparer un livrable utile, sans aspirer inutilement vos données internes.</p>
             <div className="hero-actions">
               <Link className="button" href="/scan">Lancer le scan gratuit</Link>
-              <Link className="ghost-button" href="/contact">Contacter ScanAdmin</Link>
+              <Link className="ghost-button" href="/cgv">Voir les CGV</Link>
             </div>
-            <p className="hero-note">Cette page est une information de confidentialité. Elle devra être vérifiée et complétée si de nouveaux outils de suivi, paiement ou stockage sont ajoutés.</p>
+            <p className="hero-note">Cette page est une base d’information à vérifier et compléter selon les outils réellement activés au lancement : Stripe, Resend, webhook, CRM ou analytics.</p>
           </div>
 
           <div className="report-preview">
@@ -63,12 +75,12 @@ export default function ConfidentialitePage() {
             <div className="report-metric-main"><span>Principe</span><strong style={{ fontSize: 34 }}>Minimum utile</strong></div>
             <div className="metric-grid">
               <div><span>Scan</span><strong>Local</strong></div>
-              <div><span>Analyse</span><strong>Sur demande</strong></div>
+              <div><span>Paiement</span><strong>Stripe</strong></div>
             </div>
             <div className="priority-list">
               <p>Règles clés</p>
               <span>Pas de revente</span>
-              <span>Pas de promesse de gain</span>
+              <span>Pas de carte stockée</span>
               <span>Validation humaine</span>
             </div>
           </div>
@@ -82,7 +94,7 @@ export default function ConfidentialitePage() {
         </div>
         <div className="text-stack">
           <p>Le scan gratuit sert à produire une estimation. Les informations demandées doivent donc rester liées à vos tâches administratives : volumes, temps, coût horaire indicatif, secteur et catégories de tâches.</p>
-          <p>Une demande d’analyse personnalisée nécessite plus de contexte : contact, entreprise, secteur et résumé du besoin. Ces informations servent à répondre à votre demande et à préparer une analyse plus utile.</p>
+          <p>Une commande d’analyse personnalisée nécessite plus de contexte : contact, entreprise, secteur, résumé du besoin, acceptation des conditions de vente et éléments permettant de rattacher le paiement à la demande.</p>
           <p>Les résultats ScanAdmin restent indicatifs. Ils aident à prioriser une décision, sans garantir un gain réel.</p>
         </div>
       </section>
@@ -102,6 +114,22 @@ export default function ConfidentialitePage() {
         </div>
       </section>
 
+      <section className="container premium-section">
+        <div className="section-heading">
+          <p className="section-kicker">Outils utilisés</p>
+          <h2>Le traitement peut passer par plusieurs outils selon la configuration.</h2>
+          <p>La configuration exacte doit être vérifiée avant lancement public. Les outils ci-dessous correspondent au tunnel prévu pour ScanAdmin.</p>
+        </div>
+        <div className="comparison-grid">
+          {tools.map(([title, text]) => (
+            <div key={title} className="comparison-card muted-card">
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="container premium-section split-section reversed">
         <div className="deliverable-preview">
           <div className="deliverable-header"><span>À ne pas transmettre</span><strong>Sans nécessité</strong></div>
@@ -113,6 +141,7 @@ export default function ConfidentialitePage() {
           <p className="section-kicker">Données sensibles</p>
           <h2>Ne transmettez pas d’informations sensibles si elles ne sont pas nécessaires.</h2>
           <p className="section-text">ScanAdmin n’a pas besoin de mots de passe, d’accès directs à vos outils internes ou de documents confidentiels pour un premier scan administratif.</p>
+          <p className="section-text">Le paiement est traité via Stripe Checkout. ScanAdmin n’a pas vocation à recevoir ou conserver les données complètes de carte bancaire.</p>
           <p className="section-text">Si une analyse plus avancée nécessite des documents ou exemples réels, le périmètre doit être clarifié avant tout envoi.</p>
         </div>
       </section>
@@ -155,8 +184,25 @@ export default function ConfidentialitePage() {
         </div>
         <div className="text-stack">
           <p>Le résultat du scan peut être conservé temporairement dans votre navigateur afin d’afficher la page de résultat et de poursuivre vers une demande d’analyse.</p>
-          <p>Cette logique permet d’éviter de créer un compte utilisateur pour un premier diagnostic. Si des fonctions de compte, historique, paiement ou stockage serveur sont ajoutées plus tard, cette page devra être mise à jour.</p>
+          <p>Cette logique permet d’éviter de créer un compte utilisateur pour un premier diagnostic. Lorsqu’une commande est lancée, les informations nécessaires à la création du lead et au paiement sont transmises côté serveur.</p>
           <p>Pour supprimer les données locales du navigateur, l’utilisateur peut effacer les données de navigation du site depuis les paramètres de son navigateur.</p>
+        </div>
+      </section>
+
+      <section className="container premium-section split-section reversed">
+        <div className="deliverable-preview">
+          <div className="deliverable-header"><span>Flux commande</span><strong>Analyse</strong></div>
+          <div className="deliverable-row"><strong>1. Scan</strong><span>résultat local dans le navigateur</span></div>
+          <div className="deliverable-row"><strong>2. Formulaire</strong><span>création du lead ScanAdmin</span></div>
+          <div className="deliverable-row"><strong>3. Paiement</strong><span>redirection vers Stripe Checkout</span></div>
+          <div className="deliverable-row"><strong>4. Confirmation</strong><span>webhook Stripe et notification interne</span></div>
+        </div>
+        <div>
+          <p className="section-kicker">Paiement et commande</p>
+          <h2>Le paiement est séparé du diagnostic.</h2>
+          <p className="section-text">Le formulaire crée une demande associée au scan, puis redirige vers Stripe Checkout pour le paiement de l’analyse personnalisée.</p>
+          <p className="section-text">Après paiement confirmé, Stripe peut envoyer un événement à ScanAdmin afin de déclencher une notification interne et permettre la préparation du livrable.</p>
+          <p className="section-text">Le lead seul ne déclenche pas la production de l’analyse : le paiement confirmé reste nécessaire.</p>
         </div>
       </section>
 
