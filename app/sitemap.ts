@@ -23,6 +23,7 @@ export default function sitemap() {
     '/cas-usages',
     '/comparatif',
     '/legal',
+    '/cgv',
     '/confidentialite',
   ];
 
