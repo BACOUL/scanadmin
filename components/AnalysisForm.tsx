@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 type ScanSummary = {
@@ -19,6 +20,8 @@ type LeadForm = {
   sector: string;
   message: string;
   consent: boolean;
+  termsAccepted: boolean;
+  immediateExecution: boolean;
 };
 
 type LeadResponse = {
@@ -43,6 +46,8 @@ const initialForm: LeadForm = {
   sector: '',
   message: '',
   consent: false,
+  termsAccepted: false,
+  immediateExecution: false,
 };
 
 export function AnalysisForm() {
@@ -77,6 +82,16 @@ export function AnalysisForm() {
 
     if (!form.consent) {
       setError('Vous devez accepter d’être recontacté pour recevoir votre analyse.');
+      return;
+    }
+
+    if (!form.termsAccepted) {
+      setError('Vous devez accepter les conditions générales de vente avant de commander.');
+      return;
+    }
+
+    if (!form.immediateExecution) {
+      setError('Vous devez demander l’exécution de l’analyse après paiement pour lancer la commande.');
       return;
     }
 
@@ -152,6 +167,16 @@ export function AnalysisForm() {
       <label style={{ display: 'flex', gap: 12, marginTop: 18, color: '#5d6b7a' }}>
         <input type="checkbox" checked={form.consent} onChange={(e) => updateField('consent', e.target.checked)} />
         <span>J’accepte d’être recontacté au sujet de mon analyse ScanAdmin. Les résultats sont indicatifs et ne garantissent pas un gain réel sans audit personnalisé.</span>
+      </label>
+
+      <label style={{ display: 'flex', gap: 12, marginTop: 18, color: '#5d6b7a' }}>
+        <input type="checkbox" checked={form.termsAccepted} onChange={(e) => updateField('termsAccepted', e.target.checked)} />
+        <span>J’accepte les <Link href="/cgv" target="_blank" style={{ color: '#0f766e', fontWeight: 800 }}>conditions générales de vente</Link> de ScanAdmin.</span>
+      </label>
+
+      <label style={{ display: 'flex', gap: 12, marginTop: 18, color: '#5d6b7a' }}>
+        <input type="checkbox" checked={form.immediateExecution} onChange={(e) => updateField('immediateExecution', e.target.checked)} />
+        <span>Je demande que l’analyse personnalisée puisse commencer après paiement, sans attendre un délai supplémentaire.</span>
       </label>
 
       {error ? <p style={{ color: '#b91c1c', fontWeight: 700 }}>{error}</p> : null}
