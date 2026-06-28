@@ -20,6 +20,9 @@ Cette checklist sert de document unique avant mise en ligne publique.
 - Stripe Checkout intégré dans le tunnel d’analyse.
 - Webhook Stripe ajouté.
 - Pages paiement ajoutées.
+- Page CGV ajoutée.
+- Acceptation CGV ajoutée au formulaire de commande.
+- Demande d’exécution après paiement ajoutée au formulaire.
 - Modèle de livrable d’analyse créé.
 - Déploiement Vercel non vérifié tant que la connexion/build Vercel n’est pas disponible.
 
@@ -152,6 +155,7 @@ Pages / docs concernées :
 
 - `/contact`
 - `/legal`
+- `/cgv`
 - `/confidentialite`
 - `docs/LEAD_CAPTURE_PRODUCTION.md`
 - `docs/STRIPE_CHECKOUT_SETUP.md`
@@ -171,9 +175,12 @@ Pages / docs concernées :
 - [ ] Aller sur `/analyse` après un scan.
 - [ ] Vérifier que le résultat du scan est joint à la commande.
 - [ ] Remplir le formulaire.
-- [ ] Cocher le consentement.
+- [ ] Cocher le consentement de contact.
+- [ ] Cocher l’acceptation des CGV.
+- [ ] Cocher la demande d’exécution de l’analyse après paiement.
 - [ ] Cliquer sur `Commander mon analyse — 200 €`.
-- [ ] Vérifier que le lead est créé.
+- [ ] Vérifier que le lead est créé avec `termsAccepted: true`.
+- [ ] Vérifier que le lead est créé avec `immediateExecution: true`.
 - [ ] Vérifier la redirection vers Stripe Checkout.
 - [ ] Faire un paiement test Stripe.
 - [ ] Vérifier l’arrivée sur `/paiement/succes`.
@@ -205,6 +212,8 @@ Exemple :
   "sector": "BTP",
   "message": "Je veux une analyse.",
   "consent": true,
+  "termsAccepted": true,
+  "immediateExecution": true,
   "scanResult": {
     "totalMonthlyHours": 42,
     "monthlyCost": 1260,
@@ -285,6 +294,7 @@ Pages principales à vérifier :
 - [ ] `/securite`
 - [ ] `/limites`
 - [ ] `/legal`
+- [ ] `/cgv`
 - [ ] `/confidentialite`
 
 Redirections à vérifier :
@@ -303,6 +313,7 @@ Redirections à vérifier :
 - [ ] CTA scan visible.
 - [ ] Formulaire scan utilisable.
 - [ ] Formulaire analyse utilisable.
+- [ ] Cases obligatoires visibles : contact, CGV, exécution après paiement.
 - [ ] Redirection Stripe Checkout utilisable sur mobile.
 - [ ] Pages longues lisibles.
 - [ ] Tableaux lisibles avec scroll horizontal.
@@ -317,6 +328,7 @@ Point connu : le menu mobile utilise encore `<details>` et ne se ferme pas autom
 - [ ] Vérifier le sitemap.
 - [ ] Vérifier `robots.txt`.
 - [ ] Vérifier que le sitemap utilise `https://scanadmin.fr`.
+- [ ] Vérifier que `/cgv` est dans le sitemap.
 - [ ] Vérifier que `/result`, `/analyse`, `/merci` ne sont pas dans le sitemap.
 - [ ] Vérifier que `/paiement/succes` et `/paiement/retour` ne sont pas indexables.
 - [ ] Vérifier que les pages guides sont indexables.
@@ -354,13 +366,16 @@ Pages à pousser en priorité :
 - [ ] Informations fiscales si applicables.
 - [ ] Adresse email officielle.
 - [ ] Hébergeur.
+- [ ] Page `/cgv` relue et complétée.
 - [ ] Politique de confidentialité cohérente avec les outils réellement branchés : Stripe, Resend, webhook, éventuel CRM.
-- [ ] Ajouter ou préparer des CGV adaptées à l’analyse personnalisée payante.
-- [ ] Vérifier la politique de remboursement si elle est affichée ou communiquée.
+- [ ] Prix 200 € clarifié : TTC ou HT selon décision juridique/comptable.
+- [ ] Politique de remboursement cohérente avec le service vendu.
+- [ ] Droit de rétractation / exécution anticipée validé selon le type de clientèle réellement visé.
 
 Pages concernées :
 
 - `/legal`
+- `/cgv`
 - `/confidentialite`
 - `/tarifs`
 - `/contact`
@@ -414,6 +429,8 @@ Process officiel :
 ```txt
 Scan gratuit
 → demande d’analyse
+→ acceptation CGV
+→ demande d’exécution après paiement
 → création lead
 → paiement Stripe Checkout 200 €
 → confirmation paiement
@@ -444,6 +461,7 @@ Le site peut être lancé publiquement seulement si :
 - [ ] Le build Vercel passe.
 - [ ] Le domaine fonctionne.
 - [ ] Le formulaire de lead envoie réellement les demandes.
+- [ ] L’acceptation CGV est obligatoire avant Checkout.
 - [ ] Stripe Checkout fonctionne en test.
 - [ ] Le webhook Stripe fonctionne.
 - [ ] Une notification paiement arrive bien.
