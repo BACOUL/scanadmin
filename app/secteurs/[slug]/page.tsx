@@ -24,6 +24,16 @@ const safetyRules = [
   'Arrêter le test si la relecture humaine devient trop lourde',
 ];
 
+const agentTaskLinks: Record<string, string> = {
+  'Agent devis': '/taches/devis',
+  'Agent relance': '/taches/relances-clients',
+  'Agent mails': '/taches/emails-administratifs',
+  'Agent documents': '/taches/documents-entrants',
+  'Agent reporting': '/taches/reporting',
+  'Agent dossiers clients': '/cas-usages',
+  'Agent planning': '/cas-usages',
+};
+
 export function generateStaticParams() {
   return sectors.map((sector) => ({ slug: sector.slug }));
 }
@@ -105,12 +115,16 @@ export default function SectorPage({ params }: { params: { slug: string } }) {
       <section className="container premium-section split-section reversed">
         <div className="deliverable-preview">
           <div className="deliverable-header"><span>Agents IA adaptés</span><strong>Supervisés</strong></div>
-          {sector.agents.map((agent) => (
-            <div key={agent} className="deliverable-row">
-              <strong>{agent}</strong>
-              <span>prépare le travail, mais ne valide pas seul</span>
-            </div>
-          ))}
+          {sector.agents.map((agent) => {
+            const href = agentTaskLinks[agent];
+            return (
+              <div key={agent} className="deliverable-row">
+                <strong>{agent}</strong>
+                <span>prépare le travail, mais ne valide pas seul</span>
+                {href ? <Link className="ghost-button" href={href}>Voir la tâche liée</Link> : null}
+              </div>
+            );
+          })}
         </div>
         <div>
           <p className="section-kicker">Agents IA-first</p>
