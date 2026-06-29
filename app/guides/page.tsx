@@ -10,7 +10,7 @@ const guideGroups = [
   {
     title: 'Agents IA administratifs',
     description: 'Guides par agent pour comprendre ce que l’IA peut préparer, ce qu’elle ne doit pas décider seule et quand le test devient pertinent.',
-    slugs: ['agent-ia-administratif', 'agent-ia-devis', 'agent-ia-relance-client', 'agent-ia-factures'],
+    slugs: ['agent-ia-administratif', 'agent-ia-devis', 'agent-ia-relance-client', 'agent-ia-documents', 'agent-ia-dossiers-clients', 'agent-ia-planning', 'agent-ia-reporting', 'agent-ia-factures'],
   },
   {
     title: 'Guides par secteur',
