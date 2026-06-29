@@ -30,6 +30,8 @@ export default function sitemap() {
     '/taches/relances-clients',
     '/taches/emails-administratifs',
     '/taches/documents-entrants',
+    '/taches/reporting',
+    '/taches/factures',
   ];
 
   const guidePaths = guides.map((guide) => `/guides/${guide.slug}`);
