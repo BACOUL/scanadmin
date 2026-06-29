@@ -32,6 +32,8 @@ export default function sitemap() {
     '/taches/documents-entrants',
     '/taches/reporting',
     '/taches/factures',
+    '/taches/dossiers-clients',
+    '/taches/planning',
   ];
 
   const guidePaths = guides.map((guide) => `/guides/${guide.slug}`);
