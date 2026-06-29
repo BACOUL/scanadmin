@@ -9,6 +9,8 @@ const agents = [
     canDo: ['résumer une conversation', 'préparer une réponse', 'identifier les informations manquantes', 'classer les messages par priorité'],
     cannotDo: ['répondre seul à un client sensible', 'prendre un engagement commercial', 'modifier une condition contractuelle'],
     beforeTest: 'À tester si les mails répétitifs prennent plusieurs heures par semaine et si une personne peut valider les réponses avant envoi.',
+    taskHref: '/taches/emails-administratifs',
+    taskLabel: 'Voir la page emails',
   },
   {
     name: 'Agent IA devis',
@@ -18,6 +20,8 @@ const agents = [
     canDo: ['résumer la demande client', 'préparer une trame de devis', 'lister les points à vérifier', 'préparer une réponse de suivi'],
     cannotDo: ['fixer seul le prix final', 'envoyer le devis sans validation', 'prendre une décision commerciale'],
     beforeTest: 'À tester seulement si les demandes sont assez répétitives et si le dirigeant ou l’équipe commerciale conserve la validation finale.',
+    taskHref: '/taches/devis',
+    taskLabel: 'Voir la page devis',
   },
   {
     name: 'Agent IA relance',
@@ -27,6 +31,8 @@ const agents = [
     canDo: ['préparer une relance client', 'adapter le ton', 'rappeler les pièces manquantes', 'proposer un message court'],
     cannotDo: ['harceler un client', 'envoyer automatiquement sans contrôle', 'modifier une échéance ou un accord'],
     beforeTest: 'Souvent un bon premier agent car le risque est limité et la vérification humaine est simple.',
+    taskHref: '/taches/relances-clients',
+    taskLabel: 'Voir la page relances',
   },
   {
     name: 'Agent IA documents',
@@ -36,6 +42,8 @@ const agents = [
     canDo: ['identifier le type de document', 'résumer le contenu', 'extraire les points utiles', 'proposer un classement'],
     cannotDo: ['certifier la conformité', 'valider juridiquement un document', 'remplacer une revue humaine'],
     beforeTest: 'À tester si le classement ou la recherche d’informations prend du temps et si les documents peuvent être vérifiés facilement.',
+    taskHref: '/taches/documents-entrants',
+    taskLabel: 'Voir la page documents',
   },
   {
     name: 'Agent IA factures',
@@ -45,6 +53,8 @@ const agents = [
     canDo: ['repérer fournisseur, date, montant', 'signaler une information manquante', 'préparer une synthèse de contrôle', 'classer par statut'],
     cannotDo: ['valider seul une facture', 'déclencher un paiement', 'remplacer le contrôle comptable'],
     beforeTest: 'À tester avec prudence, car les erreurs peuvent avoir un impact comptable ou financier.',
+    taskHref: '/taches/factures',
+    taskLabel: 'Voir la page factures',
   },
   {
     name: 'Agent IA dossiers clients',
@@ -54,6 +64,8 @@ const agents = [
     canDo: ['résumer un dossier', 'lister les éléments manquants', 'préparer une fiche client', 'mettre en évidence les prochaines actions'],
     cannotDo: ['prendre une décision client', 'modifier une obligation', 'garantir que le dossier est complet'],
     beforeTest: 'À tester si les dossiers sont nombreux, répétitifs et suffisamment structurés pour être relus rapidement.',
+    taskHref: '/cas-usages',
+    taskLabel: 'Voir les cas d’usage',
   },
   {
     name: 'Agent IA reporting',
@@ -63,6 +75,8 @@ const agents = [
     canDo: ['préparer une synthèse', 'faire ressortir les points importants', 'structurer un compte rendu', 'aider à préparer un reporting simple'],
     cannotDo: ['inventer des chiffres', 'corriger une donnée source fausse', 'remplacer une analyse financière'],
     beforeTest: 'À tester si les données sont disponibles et si le besoin revient souvent.',
+    taskHref: '/taches/reporting',
+    taskLabel: 'Voir la page reporting',
   },
 ];
 
@@ -140,6 +154,7 @@ export default function Page() {
                   <p>{agent.bestFor}</p>
                   <p><strong>Rôle :</strong> {agent.role}</p>
                   <p><strong>Avant de tester :</strong> {agent.beforeTest}</p>
+                  <Link className="ghost-button" href={agent.taskHref}>{agent.taskLabel}</Link>
                 </div>
                 <div className="grid grid-2">
                   <div className="deliverable-preview" style={{ boxShadow: 'none' }}>
