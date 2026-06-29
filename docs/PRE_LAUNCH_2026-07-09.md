@@ -2,9 +2,22 @@
 
 ## Objectif
 
-Préparer ScanAdmin pour un lancement propre dès que Vercel peut être réactivé.
+Préparer ScanAdmin pour une mise en ligne propre dès que Vercel peut être réactivé.
 
-Cette checklist sert de document unique avant mise en ligne publique.
+La stratégie officielle de lancement est désormais :
+
+```txt
+SEO long terme
+AI-first
+site indexable
+contenu utile et citable
+scan gratuit comme point d’entrée
+analyse personnalisée payante comme offre de conversion
+```
+
+ScanAdmin ne doit pas dépendre d’une recherche active de testeurs ou d’une prospection manuelle pour valider le lancement.
+
+---
 
 ## Statut actuel
 
@@ -13,9 +26,11 @@ Cette checklist sert de document unique avant mise en ligne publique.
 - Pages de conversion refaites.
 - Pages de confiance refaites.
 - Pages SEO guides et secteurs refaites.
-- Navigation corrigée.
-- Redirections corrigées.
+- Cocon SEO `/taches` créé.
+- Pages tâches créées : devis, relances clients, emails administratifs, documents entrants, dossiers clients, planning, reporting, factures.
+- Navigation et maillage interne renforcés.
 - Sitemap et robots préparés pour `scanadmin.fr`.
+- JSON-LD global ajouté.
 - API leads renforcée.
 - Stripe Checkout intégré dans le tunnel d’analyse.
 - Webhook Stripe ajouté.
@@ -27,9 +42,11 @@ Cette checklist sert de document unique avant mise en ligne publique.
 - Modèle de livrable d’analyse créé.
 - Déploiement Vercel non vérifié tant que la connexion/build Vercel n’est pas disponible.
 
+---
+
 ## 1. Vercel — actions obligatoires
 
-### À faire le 9 juillet ou dès réactivation
+À faire le 9 juillet ou dès réactivation.
 
 - [ ] Reconnecter le projet GitHub `BACOUL/scanadmin` à Vercel si nécessaire.
 - [ ] Lancer un déploiement de `main`.
@@ -40,6 +57,16 @@ Cette checklist sert de document unique avant mise en ligne publique.
 - [ ] Vérifier que le sitemap est accessible.
 - [ ] Vérifier que `robots.txt` est accessible.
 - [ ] Vérifier que les headers noindex fonctionnent sur les pages tunnel.
+
+Commandes locales recommandées si possible :
+
+```bash
+npm install
+npm run typecheck
+npm run build
+```
+
+---
 
 ## 2. Variables d’environnement obligatoires
 
@@ -57,7 +84,7 @@ STRIPE_ANALYSIS_PRICE_ID="price_..."
 STRIPE_WEBHOOK_SECRET="whsec_..."
 ```
 
-### Capture de leads — webhook ou email
+### Capture de leads
 
 Au moins une destination fiable doit être configurée.
 
@@ -98,17 +125,15 @@ SCANADMIN_PAYMENTS_WEBHOOK_SECRET="secret-optionnel"
 - [ ] Ne pas lancer publiquement sans paiement Stripe testé.
 - [ ] Ne pas utiliser le fallback logs serveur comme configuration finale.
 
-## 3. Configuration Stripe
+---
 
-### Produit Stripe
+## 3. Configuration Stripe
 
 Créer un produit :
 
 ```txt
 Analyse personnalisée ScanAdmin
 ```
-
-### Prix Stripe
 
 Créer un prix unique :
 
@@ -124,9 +149,7 @@ Copier le `price_...` dans :
 STRIPE_ANALYSIS_PRICE_ID="price_..."
 ```
 
-### Webhook Stripe
-
-Créer un endpoint :
+Créer un endpoint webhook :
 
 ```txt
 https://scanadmin.fr/api/stripe/webhook
@@ -143,6 +166,8 @@ Copier le secret dans :
 ```env
 STRIPE_WEBHOOK_SECRET="whsec_..."
 ```
+
+---
 
 ## 4. Email officiel
 
@@ -161,7 +186,9 @@ Pages / docs concernées :
 - `docs/LEAD_CAPTURE_PRODUCTION.md`
 - `docs/STRIPE_CHECKOUT_SETUP.md`
 
-## 5. Tests formulaire et tunnel complet
+---
+
+## 5. Tests tunnel complet
 
 ### Test scan gratuit
 
@@ -197,82 +224,9 @@ Pages / docs concernées :
 - [ ] Vérifier l’arrivée sur `/paiement/retour`.
 - [ ] Vérifier que l’analyse n’est pas considérée comme payée.
 
-## 6. Tests API leads
+---
 
-Tester manuellement `POST /api/leads` avec un payload valide.
-
-Exemple :
-
-```json
-{
-  "firstName": "Jean",
-  "lastName": "Test",
-  "company": "Entreprise Test",
-  "email": "jean@example.com",
-  "phone": "0600000000",
-  "sector": "BTP",
-  "message": "Je veux une analyse.",
-  "consent": true,
-  "termsAccepted": true,
-  "immediateExecution": true,
-  "scanResult": {
-    "totalMonthlyHours": 42,
-    "monthlyCost": 1260,
-    "annualCost": 15120,
-    "lowRecoverableHours": 8,
-    "highRecoverableHours": 14
-  }
-}
-```
-
-Réponse attendue :
-
-```json
-{
-  "ok": true,
-  "leadId": "lead_...",
-  "deliveries": ["webhook"]
-}
-```
-
-ou :
-
-```json
-{
-  "ok": true,
-  "leadId": "lead_...",
-  "deliveries": ["email"]
-}
-```
-
-## 7. Tests API Checkout
-
-Tester `POST /api/checkout` après création d’un lead.
-
-Payload attendu :
-
-```json
-{
-  "leadId": "lead_...",
-  "email": "jean@example.com",
-  "company": "Entreprise Test",
-  "firstName": "Jean",
-  "lastName": "Test",
-  "sector": "BTP"
-}
-```
-
-Réponse attendue :
-
-```json
-{
-  "ok": true,
-  "url": "https://checkout.stripe.com/...",
-  "sessionId": "cs_..."
-}
-```
-
-## 8. Tests navigation
+## 6. Tests navigation
 
 Pages principales à vérifier :
 
@@ -286,6 +240,15 @@ Pages principales à vérifier :
 - [ ] `/method`
 - [ ] `/catalogue`
 - [ ] `/cas-usages`
+- [ ] `/taches`
+- [ ] `/taches/devis`
+- [ ] `/taches/relances-clients`
+- [ ] `/taches/emails-administratifs`
+- [ ] `/taches/documents-entrants`
+- [ ] `/taches/dossiers-clients`
+- [ ] `/taches/planning`
+- [ ] `/taches/reporting`
+- [ ] `/taches/factures`
 - [ ] `/tarifs`
 - [ ] `/contact`
 - [ ] `/guides`
@@ -307,7 +270,9 @@ Redirections à vérifier :
 - [ ] `/rapport` → `/exemple`
 - [ ] `/pricing` → `/tarifs`
 
-## 9. Tests mobile
+---
+
+## 7. Tests mobile
 
 - [ ] Header visible.
 - [ ] Menu mobile ouvert correctement.
@@ -322,20 +287,21 @@ Redirections à vérifier :
 
 Point connu : le menu mobile utilise encore `<details>` et ne se ferme pas automatiquement au clic. Ce n’est pas bloquant, mais améliorable.
 
-## 10. SEO technique
+---
+
+## 8. SEO technique
 
 - [ ] Vérifier les titres de pages.
 - [ ] Vérifier les descriptions meta.
 - [ ] Vérifier le sitemap.
 - [ ] Vérifier `robots.txt`.
 - [ ] Vérifier que le sitemap utilise `https://scanadmin.fr`.
-- [ ] Vérifier que `/cgv` est dans le sitemap.
 - [ ] Vérifier que `/result`, `/analyse`, `/merci` ne sont pas dans le sitemap.
 - [ ] Vérifier que `/paiement/succes` et `/paiement/retour` ne sont pas indexables.
 - [ ] Vérifier que les pages guides sont indexables.
 - [ ] Vérifier que les pages secteurs sont indexables.
-- [ ] Ajouter le domaine dans Google Search Console.
-- [ ] Soumettre le sitemap.
+- [ ] Vérifier que les pages `/taches` sont indexables.
+- [ ] Vérifier que les pages tunnel ne sont pas proposées à l’indexation.
 
 Sitemap attendu :
 
@@ -343,10 +309,23 @@ Sitemap attendu :
 https://scanadmin.fr/sitemap.xml
 ```
 
-## 11. SEO contenu prioritaire
+---
 
-Pages à pousser en priorité :
+## 9. SEO contenu prioritaire
 
+Pages à pousser en priorité dans Search Console :
+
+- `/`
+- `/scan`
+- `/taches`
+- `/taches/devis`
+- `/taches/relances-clients`
+- `/taches/emails-administratifs`
+- `/taches/documents-entrants`
+- `/taches/dossiers-clients`
+- `/taches/planning`
+- `/taches/reporting`
+- `/taches/factures`
 - `/guides/audit-ia-pme`
 - `/guides/agent-ia-administratif`
 - `/guides/automatiser-taches-administratives`
@@ -357,7 +336,27 @@ Pages à pousser en priorité :
 - `/comparatif`
 - `/cas-usages`
 
-## 12. Juridique / confiance
+---
+
+## 10. Search Console — actions lancement
+
+Après mise en ligne :
+
+- [ ] Ajouter `scanadmin.fr` dans Google Search Console.
+- [ ] Valider la propriété domaine.
+- [ ] Soumettre `https://scanadmin.fr/sitemap.xml`.
+- [ ] Demander l’indexation de `/`.
+- [ ] Demander l’indexation de `/scan`.
+- [ ] Demander l’indexation de `/taches`.
+- [ ] Demander l’indexation de `/taches/devis`.
+- [ ] Demander l’indexation de `/guides/audit-ia-pme`.
+- [ ] Surveiller les impressions.
+- [ ] Surveiller les requêtes qui déclenchent les pages.
+- [ ] Améliorer les pages selon les impressions et requêtes réelles.
+
+---
+
+## 11. Juridique / confiance
 
 À vérifier avant lancement commercial :
 
@@ -383,8 +382,6 @@ Pages concernées :
 - `/contact`
 - `/analyse-personnalisee`
 
-## 13. Prix et offre
-
 Prix actuellement affichés :
 
 - Scan gratuit : 0 €.
@@ -401,7 +398,9 @@ Prix actuellement affichés :
 - [ ] Le bouton de commande lance bien Stripe Checkout.
 - [ ] Le paiement confirmé déclenche bien une notification interne.
 
-## 14. Livrable d’analyse
+---
+
+## 12. Livrable d’analyse
 
 Document de référence :
 
@@ -418,7 +417,9 @@ Avant le lancement :
 - [ ] Vérifier que le livrable mentionne la validation humaine.
 - [ ] Préparer un format de livraison : PDF, Google Docs exporté ou document envoyé par email.
 
-## 15. Process après paiement
+---
+
+## 13. Process après paiement
 
 Document de référence :
 
@@ -448,7 +449,9 @@ Scan gratuit
 - [ ] Le client sait quoi attendre après paiement.
 - [ ] Le délai de livraison est cohérent.
 
-## 16. Tracking et analytics
+---
+
+## 14. Tracking et analytics
 
 Non obligatoire au premier lancement, mais recommandé.
 
@@ -456,7 +459,9 @@ Non obligatoire au premier lancement, mais recommandé.
 - [ ] Ne pas ajouter de tracking sans mettre à jour la confidentialité si nécessaire.
 - [ ] Suivre au minimum : visites, scans lancés, scans terminés, clic analyse, formulaires envoyés, Checkout lancé, paiement confirmé.
 
-## 17. Checklist finale de lancement
+---
+
+## 15. Checklist finale de lancement
 
 Le site peut être lancé publiquement seulement si :
 
@@ -474,28 +479,43 @@ Le site peut être lancé publiquement seulement si :
 - [ ] Le sitemap est accessible.
 - [ ] Le scan gratuit fonctionne sur mobile.
 - [ ] Le livrable d’analyse est prêt à être rempli.
+- [ ] La stratégie SEO + AI-first est cohérente dans les docs principales.
 
-## 18. Priorités après lancement
+---
 
-Après mise en ligne :
+## 16. Priorités après lancement
 
-1. Tester 10 scans réels.
-2. Obtenir 3 à 5 lancements Checkout.
-3. Obtenir 1 à 2 paiements à 200 €.
-4. Livrer les premières analyses avec `docs/ANALYSIS_DELIVERABLE_TEMPLATE.md`.
-5. Noter les objections.
-6. Améliorer les pages selon les objections réelles.
-7. Créer les premiers cas clients anonymisés.
-8. Améliorer l’automatisation seulement après preuve de paiement.
+La priorité après mise en ligne n’est pas la recherche active de testeurs.
 
-## 19. Décision importante
+Priorités officielles :
+
+1. Vérifier indexation de `scanadmin.fr`.
+2. Soumettre le sitemap dans Search Console.
+3. Demander l’indexation des pages prioritaires.
+4. Surveiller les impressions et requêtes réelles.
+5. Identifier les pages qui commencent à apparaître.
+6. Renforcer les pages qui obtiennent des impressions mais peu de clics.
+7. Améliorer les CTA vers `/scan`.
+8. Suivre les scans terminés.
+9. Suivre les clics vers l’analyse personnalisée.
+10. Suivre les paiements confirmés, sans objectif forcé de testeurs.
+11. Créer progressivement de nouvelles pages secteurs selon les requêtes Search Console.
+12. Créer des cas clients anonymisés uniquement après clients réels ou retours spontanés.
+
+---
+
+## 17. Décision importante
 
 ScanAdmin ne doit pas être lancé comme un simple site vitrine.
 
-Le lancement doit vérifier une chose :
+Le lancement doit vérifier progressivement une chose :
 
 ```txt
-Est-ce que des PME comprennent le problème, lancent le scan, puis paient une analyse personnalisée ?
+Est-ce que le SEO, les moteurs de recherche et les moteurs IA comprennent ScanAdmin,
+amènent des visiteurs qualifiés,
+puis transforment une partie de ces visiteurs en scans et analyses personnalisées ?
 ```
 
-C’est le vrai signal de départ.
+C’est le vrai signal de départ dans la stratégie SEO + AI-first.
+
+Les retours humains directs peuvent être utiles, mais ils restent secondaires et optionnels.
