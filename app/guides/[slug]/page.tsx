@@ -83,6 +83,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
           <p>{guide.description}</p>
           <p>Le but n’est pas de choisir un outil IA parce qu’il est à la mode. Le but est d’identifier si la tâche concernée est assez fréquente, coûteuse, répétitive et vérifiable pour justifier un test.</p>
           <p>ScanAdmin relie donc chaque sujet à une décision simple : mesurer, prioriser, puis tester sous validation humaine.</p>
+          {guide.taskHref ? <Link className="ghost-button" href={guide.taskHref}>{guide.taskLabel}</Link> : null}
         </div>
       </section>
 
