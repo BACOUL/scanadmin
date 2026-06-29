@@ -30,8 +30,8 @@ const agentTaskLinks: Record<string, string> = {
   'Agent mails': '/taches/emails-administratifs',
   'Agent documents': '/taches/documents-entrants',
   'Agent reporting': '/taches/reporting',
-  'Agent dossiers clients': '/cas-usages',
-  'Agent planning': '/cas-usages',
+  'Agent dossiers clients': '/taches/dossiers-clients',
+  'Agent planning': '/taches/planning',
 };
 
 export function generateStaticParams() {
