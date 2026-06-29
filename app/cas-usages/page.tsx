@@ -9,6 +9,8 @@ const useCases = [
     preparation: ['résumer les échanges', 'classer les demandes par priorité', 'préparer une réponse', 'signaler les informations manquantes'],
     humanCheck: 'Validation du ton, du fond et des engagements avant envoi.',
     risk: 'Faible à moyen',
+    taskHref: '/taches/emails-administratifs',
+    taskLabel: 'Lire la page emails',
   },
   {
     title: 'Préparer les devis simples',
@@ -18,6 +20,8 @@ const useCases = [
     preparation: ['résumer la demande client', 'identifier les points à confirmer', 'préparer une trame de devis', 'proposer une réponse de suivi'],
     humanCheck: 'Validation obligatoire du prix, des conditions, des délais et de l’engagement commercial.',
     risk: 'Moyen',
+    taskHref: '/taches/devis',
+    taskLabel: 'Lire la page devis',
   },
   {
     title: 'Relancer les clients et documents manquants',
@@ -27,6 +31,8 @@ const useCases = [
     preparation: ['préparer un message court', 'adapter le ton', 'rappeler les éléments attendus', 'proposer une relance claire'],
     humanCheck: 'Vérification du contexte et de la relation client avant envoi.',
     risk: 'Faible',
+    taskHref: '/taches/relances-clients',
+    taskLabel: 'Lire la page relances',
   },
   {
     title: 'Classer les documents entrants',
@@ -36,6 +42,8 @@ const useCases = [
     preparation: ['identifier le type de document', 'résumer le contenu', 'extraire les informations utiles', 'proposer un classement'],
     humanCheck: 'Contrôle du classement et des informations importantes avant archivage ou décision.',
     risk: 'Faible à moyen',
+    taskHref: '/taches/documents-entrants',
+    taskLabel: 'Lire la page documents',
   },
   {
     title: 'Préparer le contrôle des factures',
@@ -45,6 +53,8 @@ const useCases = [
     preparation: ['repérer fournisseur, date et montant', 'signaler les champs manquants', 'préparer une synthèse de contrôle', 'classer par statut'],
     humanCheck: 'Validation comptable et humaine indispensable avant toute décision ou paiement.',
     risk: 'Moyen à élevé',
+    taskHref: '/taches/factures',
+    taskLabel: 'Lire la page factures',
   },
   {
     title: 'Suivre les dossiers clients',
@@ -63,6 +73,8 @@ const useCases = [
     preparation: ['structurer une synthèse', 'faire ressortir les points importants', 'préparer un compte rendu', 'lister les sujets à suivre'],
     humanCheck: 'Contrôle des chiffres, du contexte et de l’interprétation avant diffusion.',
     risk: 'Faible à moyen',
+    taskHref: '/taches/reporting',
+    taskLabel: 'Lire la page reporting',
   },
 ];
 
@@ -149,7 +161,7 @@ export default function UseCasesPage() {
                   <p><strong>Problème :</strong> {item.pain}</p>
                   <p><strong>Agent adapté :</strong> {item.agent}</p>
                   <p><strong>Validation humaine :</strong> {item.humanCheck}</p>
-                  {item.title === 'Préparer les devis simples' ? <Link className="ghost-button" href="/taches/devis">Lire la page devis</Link> : null}
+                  {item.taskHref ? <Link className="ghost-button" href={item.taskHref}>{item.taskLabel}</Link> : null}
                 </div>
                 <div className="deliverable-preview" style={{ boxShadow: 'none' }}>
                   <div className="deliverable-header"><span>Ce que l’IA prépare</span><strong>Supervisé</strong></div>
