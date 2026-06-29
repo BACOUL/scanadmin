@@ -37,6 +37,8 @@ const useCases = [
   ['Devis', 'BTP, espaces verts, nettoyage, maintenance', 'Agent IA devis supervisé', '/taches/devis'],
   ['Relances', 'Immobilier, formation, nettoyage, BTP', 'Agent IA relance', '/taches/relances-clients'],
   ['Documents', 'Transport, sécurité, immobilier, maintenance', 'Agent IA documents', '/taches/documents-entrants'],
+  ['Dossiers clients', 'Immobilier, formation, conseil, BTP', 'Agent IA dossiers clients', '/taches/dossiers-clients'],
+  ['Planning', 'Nettoyage, sécurité, restauration, terrain', 'Agent IA planning', '/taches/planning'],
   ['Reporting', 'Agences, transport, sécurité, conseil', 'Agent IA reporting', '/taches/reporting'],
   ['Mails', 'Commerce, restauration, services, agences', 'Agent IA mails', '/taches/emails-administratifs'],
 ];
