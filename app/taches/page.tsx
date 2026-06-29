@@ -28,7 +28,7 @@ const tasks = [
   {
     title: 'Reporting et synthèses',
     href: '/taches/reporting',
-    status: 'À venir',
+    status: 'Disponible',
     description: 'Préparer des synthèses internes, tableaux de suivi et comptes rendus à partir de données fournies.',
   },
   {
@@ -108,7 +108,7 @@ export default function TasksHubPage() {
               <p className="section-kicker">{task.status}</p>
               <h3>{task.title}</h3>
               <p>{task.description}</p>
-              {task.status === 'Disponible' ? <Link className="ghost-button" href={task.href}>Lire la page</Link> : null}
+              {task.status !== 'À venir' ? <Link className="ghost-button" href={task.href}>Lire la page</Link> : null}
             </div>
           ))}
         </div>
