@@ -27,6 +27,9 @@ export default function sitemap() {
     '/confidentialite',
     '/taches',
     '/taches/devis',
+    '/taches/relances-clients',
+    '/taches/emails-administratifs',
+    '/taches/documents-entrants',
   ];
 
   const guidePaths = guides.map((guide) => `/guides/${guide.slug}`);
