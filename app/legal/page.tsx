@@ -1,10 +1,15 @@
 import Link from 'next/link';
 
 const editorFields = [
-  ['Nom commercial', 'ScanAdmin'],
-  ['Éditeur', 'Jeason BACOUL — informations administratives complètes à vérifier avant lancement commercial'],
-  ['Contact', 'contact@scanadmin.fr'],
-  ['Directeur de la publication', 'Jeason BACOUL'],
+  ['Service commercial', 'ScanAdmin'],
+  ['Exploitation', 'ScanAdmin est un service / une branche commerciale exploitée par TimeProofs.'],
+  ['Entreprise', 'TimeProofs — Jeason Alexandre Bacoul, entrepreneur individuel'],
+  ['SIREN', '999 356 439'],
+  ['Adresse', '3 rue de l’Église de Louppy, 55000 Les Hauts-de-Chée, France'],
+  ['Régime TVA', 'Franchise en base — TVA non applicable, art. 293 B du CGI'],
+  ['Contact ScanAdmin', 'contact@scanadmin.fr'],
+  ['Contact éditeur', 'contact@timeproofs.io'],
+  ['Directeur de la publication', 'Jeason Alexandre Bacoul'],
   ['Activité', 'Diagnostic administratif, estimation de charge administrative et recommandation d’agents IA supervisés pour PME'],
 ];
 
@@ -16,21 +21,22 @@ const hostFields = [
 ];
 
 const responsibilities = [
-  ['Résultats indicatifs', 'Les résultats du scan sont des estimations destinées à prioriser une analyse. Ils ne constituent pas une garantie de gain réel.'],
-  ['Pas de conseil juridique ou comptable', 'ScanAdmin ne remplace pas un conseil juridique, comptable, fiscal, social ou organisationnel complet.'],
+  ['Résultats indicatifs', 'Les résultats du scan et de l’analyse sont des estimations destinées à prioriser une décision. Ils ne constituent pas une garantie de gain réel.'],
+  ['Pas de conseil réglementé', 'ScanAdmin ne remplace pas un conseil juridique, comptable, fiscal, social, financier ou organisationnel complet.'],
   ['Validation humaine', 'Les agents IA éventuellement recommandés doivent préparer le travail, pas décider seuls.'],
-  ['Évolution du service', 'Les contenus, offres, prix et fonctionnalités peuvent évoluer pendant la phase de lancement.'],
+  ['Service distinct d’une mise en place IA', 'L’analyse à 200 € ne comprend pas le développement, le paramétrage ou le déploiement complet d’un agent IA.'],
 ];
 
 const aiLimits = [
   ['L’IA peut aider à préparer', 'résumer, classer, structurer, proposer un brouillon ou signaler des points à vérifier'],
   ['L’IA ne doit pas décider seule', 'prix final, engagement commercial, paiement, conformité, décision contractuelle ou action sensible'],
   ['L’humain reste responsable', 'le dirigeant ou l’équipe garde la validation finale avant toute utilisation externe'],
+  ['Mise en place séparée', 'toute demande de création ou configuration d’un agent IA fait l’objet d’un cadrage et d’un devis distinct'],
 ];
 
 export const metadata = {
-  title: 'Mentions légales ScanAdmin | Informations légales du site',
-  description: 'Mentions légales ScanAdmin : éditeur, contact, hébergement, propriété intellectuelle, limites de responsabilité et usage des agents IA supervisés.',
+  title: 'Mentions légales ScanAdmin | TimeProofs',
+  description: 'Mentions légales ScanAdmin : service exploité par TimeProofs, entrepreneur individuel Jeason Alexandre Bacoul, SIREN, contact, hébergement et limites du service.',
 };
 
 export default function LegalPage() {
@@ -41,26 +47,26 @@ export default function LegalPage() {
           <div className="hero-copy">
             <p className="badge">Mentions légales</p>
             <h1>Informations légales du site ScanAdmin.</h1>
-            <p className="hero-subtitle">Cette page regroupe les informations d’identification, d’hébergement, de propriété intellectuelle et les limites d’utilisation du service ScanAdmin.</p>
+            <p className="hero-subtitle">ScanAdmin est un service exploité par TimeProofs. Cette page regroupe les informations d’identification, d’hébergement, de propriété intellectuelle et les limites d’utilisation du service.</p>
             <div className="hero-actions">
               <Link className="button" href="/contact">Contacter ScanAdmin</Link>
               <Link className="ghost-button" href="/confidentialite">Voir la confidentialité</Link>
             </div>
-            <p className="hero-note">À vérifier avant lancement commercial : statut juridique exact, adresse, numéro d’immatriculation et informations fiscales si applicables.</p>
+            <p className="hero-note">ScanAdmin est une branche commerciale / un service de TimeProofs, et non une société distincte.</p>
           </div>
 
           <div className="report-preview">
-            <div className="report-topline"><span>Cadre</span><strong>Site professionnel</strong></div>
-            <div className="report-metric-main"><span>Principe</span><strong style={{ fontSize: 34 }}>Transparence</strong></div>
+            <div className="report-topline"><span>Éditeur</span><strong>TimeProofs</strong></div>
+            <div className="report-metric-main"><span>Service</span><strong style={{ fontSize: 34 }}>ScanAdmin</strong></div>
             <div className="metric-grid">
-              <div><span>Éditeur</span><strong>À compléter</strong></div>
-              <div><span>Hébergeur</span><strong>Vercel</strong></div>
+              <div><span>SIREN</span><strong>999 356 439</strong></div>
+              <div><span>TVA</span><strong>Non applicable</strong></div>
             </div>
             <div className="priority-list">
               <p>Pages liées</p>
+              <span>CGV</span>
               <span>Confidentialité</span>
               <span>Contact</span>
-              <span>Tarifs</span>
             </div>
           </div>
         </div>
@@ -79,7 +85,7 @@ export default function LegalPage() {
               ))}
             </tbody>
           </table>
-          <p>Les informations administratives complètes doivent être finalisées avant l’ouverture commerciale complète du service, notamment si ScanAdmin est exploité par une société, une micro-entreprise ou une autre structure déclarée.</p>
+          <p>Les commandes, paiements, factures et livrables ScanAdmin relèvent de TimeProofs, exploité par Jeason Alexandre Bacoul en entrepreneur individuel.</p>
         </div>
       </section>
 
@@ -141,7 +147,7 @@ export default function LegalPage() {
           </div>
           <div className="card content-card">
             <h2>Données personnelles</h2>
-            <p>Les informations relatives aux données personnelles, au scan, aux demandes d’analyse et aux droits utilisateur sont précisées dans la politique de confidentialité.</p>
+            <p>Les informations relatives aux données personnelles, au scan, aux demandes d’analyse, aux paiements et aux droits utilisateur sont précisées dans la politique de confidentialité.</p>
             <Link className="button" href="/confidentialite">Lire la confidentialité</Link>
           </div>
         </div>
@@ -150,26 +156,14 @@ export default function LegalPage() {
       <section className="container premium-section split-section reversed">
         <div className="card content-card">
           <h2>Prix et offres</h2>
-          <p>Les prix affichés peuvent évoluer pendant la phase de lancement. L’analyse personnalisée est présentée avec un prix normal prévu et une offre de lancement.</p>
-          <p>Les modalités commerciales détaillées devront être précisées dans des conditions de vente si la vente en ligne ou la contractualisation directe est activée.</p>
+          <p>L’analyse personnalisée est proposée avec une offre de lancement à 200 €. Ce prix correspond à l’analyse et au livrable, pas à la création complète d’un agent IA.</p>
+          <p>La mise en place d’un agent IA supervisé, si demandée après l’analyse, fait l’objet d’un cadrage et d’un devis séparé.</p>
           <Link className="button" href="/tarifs">Voir les tarifs</Link>
         </div>
         <div>
           <p className="section-kicker">Offres commerciales</p>
-          <h2>Les mentions légales ne remplacent pas des CGV.</h2>
-          <p className="section-text">Si ScanAdmin active un paiement en ligne, un abonnement, une vente à des particuliers ou des prestations contractualisées, des conditions générales adaptées devront être ajoutées ou communiquées.</p>
-        </div>
-      </section>
-
-      <section className="container premium-section comparison-section">
-        <div className="section-heading">
-          <p className="section-kicker">Mise à jour</p>
-          <h2>Cette page doit évoluer avec le statut réel du projet.</h2>
-        </div>
-        <div className="comparison-grid">
-          <div className="comparison-card muted-card"><h3>Avant lancement</h3><p>Compléter les informations administratives exactes : structure, adresse, immatriculation, TVA si applicable.</p></div>
-          <div className="comparison-card highlight-card"><h3>Après ajout paiement</h3><p>Ajouter ou publier les conditions commerciales adaptées à l’offre vendue.</p></div>
-          <div className="comparison-card muted-card"><h3>Après ajout outils</h3><p>Mettre à jour hébergement, sous-traitants, analytics, stockage ou prestataires techniques si nécessaire.</p></div>
+          <h2>Les mentions légales ne remplacent pas les CGV.</h2>
+          <p className="section-text">Les conditions applicables à l’analyse personnalisée et aux éventuelles prestations complémentaires sont précisées dans les conditions générales de vente.</p>
         </div>
       </section>
 
@@ -179,7 +173,7 @@ export default function LegalPage() {
         <p>Contactez ScanAdmin pour toute demande relative aux informations légales, à la confidentialité ou à l’utilisation du service.</p>
         <div className="hero-actions center-actions">
           <Link className="button" href="/contact">Contacter ScanAdmin</Link>
-          <Link className="ghost-button" href="/confidentialite">Voir la confidentialité</Link>
+          <Link className="ghost-button" href="/cgv">Voir les CGV</Link>
         </div>
       </section>
     </main>
