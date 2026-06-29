@@ -19,10 +19,10 @@ const criteria = [
 ];
 
 const examples = [
-  ['Devis simples', 'fort volume, valeur élevée, contrôle humain nécessaire', 'Prioritaire si les demandes sont fréquentes et répétitives.'],
-  ['Relances clients', 'risque faible, répétition forte, validation facile', 'Bon deuxième cas d’usage car le résultat est simple à vérifier.'],
-  ['Factures', 'risque plus élevé, contrôle indispensable', 'À traiter avec prudence, surtout si les données ne sont pas propres.'],
-  ['Reporting', 'utile mais souvent moins urgent', 'Intéressant si les synthèses reviennent souvent et prennent du temps.'],
+  ['Devis simples', 'fort volume, valeur élevée, contrôle humain nécessaire', 'Prioritaire si les demandes sont fréquentes et répétitives.', '/taches/devis'],
+  ['Relances clients', 'risque faible, répétition forte, validation facile', 'Bon deuxième cas d’usage car le résultat est simple à vérifier.', '/taches/relances-clients'],
+  ['Factures', 'risque plus élevé, contrôle indispensable', 'À traiter avec prudence, surtout si les données ne sont pas propres.', '/taches/factures'],
+  ['Reporting', 'utile mais souvent moins urgent', 'Intéressant si les synthèses reviennent souvent et prennent du temps.', '/taches/reporting'],
 ];
 
 const faq = [
@@ -139,8 +139,12 @@ export default function Page() {
           <table className="premium-table">
             <thead><tr><th>Tâche</th><th>Lecture ScanAdmin</th><th>Décision type</th></tr></thead>
             <tbody>
-              {examples.map(([task, reading, decision]) => (
-                <tr key={task}><td>{task}</td><td>{reading}</td><td>{decision}</td></tr>
+              {examples.map(([task, reading, decision, href]) => (
+                <tr key={task}>
+                  <td><Link href={href}>{task}</Link></td>
+                  <td>{reading}</td>
+                  <td>{decision}</td>
+                </tr>
               ))}
             </tbody>
           </table>
