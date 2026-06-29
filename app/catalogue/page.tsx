@@ -64,8 +64,8 @@ const agents = [
     canDo: ['résumer un dossier', 'lister les éléments manquants', 'préparer une fiche client', 'mettre en évidence les prochaines actions'],
     cannotDo: ['prendre une décision client', 'modifier une obligation', 'garantir que le dossier est complet'],
     beforeTest: 'À tester si les dossiers sont nombreux, répétitifs et suffisamment structurés pour être relus rapidement.',
-    taskHref: '/cas-usages',
-    taskLabel: 'Voir les cas d’usage',
+    taskHref: '/taches/dossiers-clients',
+    taskLabel: 'Voir la page dossiers',
   },
   {
     name: 'Agent IA reporting',
