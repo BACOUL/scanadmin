@@ -64,6 +64,8 @@ const useCases = [
     preparation: ['résumer le dossier', 'lister les pièces manquantes', 'préparer une fiche de suivi', 'mettre en évidence les prochaines actions'],
     humanCheck: 'Validation de la complétude et des décisions liées au dossier.',
     risk: 'Moyen',
+    taskHref: '/taches/dossiers-clients',
+    taskLabel: 'Lire la page dossiers',
   },
   {
     title: 'Produire des synthèses et reportings simples',
