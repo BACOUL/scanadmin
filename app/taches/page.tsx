@@ -26,6 +26,18 @@ const tasks = [
     description: 'Aider à trier les pièces jointes, documents chantier, bons de commande et demandes entrantes.',
   },
   {
+    title: 'Dossiers clients',
+    href: '/taches/dossiers-clients',
+    status: 'Disponible',
+    description: 'Préparer une fiche de suivi, résumer l’historique et signaler les pièces ou informations manquantes.',
+  },
+  {
+    title: 'Planning et demandes à organiser',
+    href: '/taches/planning',
+    status: 'Disponible',
+    description: 'Résumer les contraintes de planning et préparer une proposition sans confirmer seul une disponibilité.',
+  },
+  {
     title: 'Reporting et synthèses',
     href: '/taches/reporting',
     status: 'Disponible',
@@ -49,7 +61,7 @@ const criteria = [
 
 export const metadata = {
   title: 'Tâches administratives à automatiser avec l’IA | ScanAdmin',
-  description: 'Quelles tâches administratives une PME peut-elle préparer avec l’IA ? Devis, relances, emails, documents, reporting : méthode, risques et validation humaine.',
+  description: 'Quelles tâches administratives une PME peut-elle préparer avec l’IA ? Devis, relances, emails, documents, dossiers, planning, reporting : méthode, risques et validation humaine.',
 };
 
 export default function TasksHubPage() {
@@ -92,7 +104,7 @@ export default function TasksHubPage() {
         </div>
         <div className="text-stack">
           <p>Une PME ne doit pas commencer par automatiser une décision sensible. Elle doit commencer par une tâche répétitive que l’IA peut préparer et qu’un humain peut relire rapidement.</p>
-          <p>Les devis simples, les relances clients, les emails administratifs et les documents entrants sont souvent de bons premiers candidats.</p>
+          <p>Les devis simples, les relances clients, les emails administratifs, les dossiers clients et les documents entrants sont souvent de bons premiers candidats.</p>
           <p>Les factures, règlements, décisions commerciales ou engagements contractuels doivent rester sous contrôle humain strict.</p>
         </div>
       </section>
