@@ -10,19 +10,19 @@ const tasks = [
   {
     title: 'Relances clients et prospects',
     href: '/taches/relances-clients',
-    status: 'À venir',
+    status: 'Disponible',
     description: 'Préparer des relances pour devis en attente, documents manquants ou retours clients, avec validation humaine.',
   },
   {
     title: 'Emails administratifs',
     href: '/taches/emails-administratifs',
-    status: 'À venir',
+    status: 'Disponible',
     description: 'Résumer, classer et préparer des réponses aux emails répétitifs sans envoi autonome.',
   },
   {
     title: 'Documents entrants',
     href: '/taches/documents-entrants',
-    status: 'À venir',
+    status: 'Disponible',
     description: 'Aider à trier les pièces jointes, documents chantier, bons de commande et demandes entrantes.',
   },
   {
