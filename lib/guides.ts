@@ -5,6 +5,8 @@ export type Guide = {
   intro: string;
   sections: { title: string; body: string }[];
   cta: string;
+  taskHref?: string;
+  taskLabel?: string;
 };
 
 export const guides: Guide[] = [
@@ -31,6 +33,8 @@ export const guides: Guide[] = [
       { title: 'Méthode prudente', body: 'La bonne approche consiste à tester un seul agent sur une tâche répétitive à faible risque, mesurer le temps gagné, puis étendre progressivement.' },
     ],
     cta: 'Découvrir les agents recommandés',
+    taskHref: '/taches',
+    taskLabel: 'Voir les tâches administratives',
   },
   {
     slug: 'automatiser-taches-administratives',
@@ -43,6 +47,8 @@ export const guides: Guide[] = [
       { title: 'Garder le contrôle', body: 'Une automatisation sérieuse doit prévoir une étape de relecture, des règles claires et une limite sur ce que l’IA peut faire seule.' },
     ],
     cta: 'Chiffrer mes tâches administratives',
+    taskHref: '/taches',
+    taskLabel: 'Voir les tâches à automatiser',
   },
   {
     slug: 'cout-administratif-pme',
@@ -67,6 +73,8 @@ export const guides: Guide[] = [
       { title: 'Quand c’est rentable', body: 'Le potentiel existe quand l’entreprise produit plusieurs devis similaires chaque semaine et que la préparation prend du temps.' },
     ],
     cta: 'Tester le potentiel devis',
+    taskHref: '/taches/devis',
+    taskLabel: 'Voir la page devis',
   },
   {
     slug: 'agent-ia-relance-client',
@@ -79,6 +87,64 @@ export const guides: Guide[] = [
       { title: 'Priorité', body: 'Ce type d’agent est pertinent si les relances sont nombreuses chaque semaine et dispersées entre plusieurs outils.' },
     ],
     cta: 'Analyser mes relances',
+    taskHref: '/taches/relances-clients',
+    taskLabel: 'Voir la page relances',
+  },
+  {
+    slug: 'agent-ia-documents',
+    title: 'Agent IA documents : classer, résumer et retrouver les informations utiles',
+    description: 'Comprendre comment un agent IA peut aider à traiter les documents entrants, pièces jointes et justificatifs avec validation humaine.',
+    intro: 'Les documents entrants font perdre du temps quand ils arrivent par email, formulaires, dossiers clients ou échanges fournisseurs. L’IA peut préparer le tri, mais ne doit pas valider seule.',
+    sections: [
+      { title: 'Ce que l’agent peut préparer', body: 'Il peut identifier le type de document, résumer le contenu, extraire les informations utiles et signaler les pièces ou champs manquants.' },
+      { title: 'Le risque à surveiller', body: 'Un mauvais classement ou une information mal extraite peut créer un oubli. Les documents importants doivent donc être relus avant archivage ou décision.' },
+      { title: 'Quand tester', body: 'Le test devient intéressant si l’entreprise reçoit souvent les mêmes types de documents et perd du temps à les lire, trier ou retrouver.' },
+    ],
+    cta: 'Analyser mes documents entrants',
+    taskHref: '/taches/documents-entrants',
+    taskLabel: 'Voir la page documents',
+  },
+  {
+    slug: 'agent-ia-dossiers-clients',
+    title: 'Agent IA dossiers clients : suivre les pièces et prochaines actions',
+    description: 'Utiliser un agent IA pour préparer des fiches de suivi, résumer les dossiers clients et signaler les pièces manquantes.',
+    intro: 'Un dossier client accumule souvent échanges, documents, validations et prochaines étapes. L’IA peut aider à retrouver l’essentiel, mais pas décider qu’un dossier est complet.',
+    sections: [
+      { title: 'Aide possible', body: 'Un agent IA peut résumer l’historique, préparer une fiche de suivi, lister les pièces manquantes et proposer les prochaines actions à vérifier.' },
+      { title: 'Limite importante', body: 'La complétude d’un dossier et les décisions associées doivent rester humaines, surtout si le dossier engage l’entreprise ou le client.' },
+      { title: 'Bon premier test', body: 'Commencer sur des dossiers simples et répétitifs permet de mesurer le temps gagné sans risquer une mauvaise décision.' },
+    ],
+    cta: 'Analyser mes dossiers clients',
+    taskHref: '/taches/dossiers-clients',
+    taskLabel: 'Voir la page dossiers clients',
+  },
+  {
+    slug: 'agent-ia-planning',
+    title: 'Agent IA planning : préparer les contraintes sans confirmer seul',
+    description: 'Comprendre comment l’IA peut aider à préparer des demandes de planning, confirmations et contraintes opérationnelles sans automatisation risquée.',
+    intro: 'Le planning mélange souvent demandes clients, contraintes terrain, disponibilités et messages de confirmation. L’IA peut préparer, mais la validation opérationnelle reste indispensable.',
+    sections: [
+      { title: 'Ce que l’agent peut préparer', body: 'Il peut résumer une demande, lister les contraintes, signaler les informations manquantes et préparer un brouillon de confirmation.' },
+      { title: 'Ce qu’il ne doit pas faire', body: 'L’IA ne doit pas confirmer une disponibilité, modifier un planning validé ou promettre une intervention sans validation humaine.' },
+      { title: 'Quand c’est utile', body: 'Le potentiel existe si les demandes de planning sont fréquentes, répétitives et suffisamment simples pour être vérifiées rapidement.' },
+    ],
+    cta: 'Analyser mes tâches de planning',
+    taskHref: '/taches/planning',
+    taskLabel: 'Voir la page planning',
+  },
+  {
+    slug: 'agent-ia-reporting',
+    title: 'Agent IA reporting : préparer des synthèses sans inventer les chiffres',
+    description: 'Utiliser un agent IA pour préparer des reportings, comptes rendus et synthèses internes avec contrôle des données sources.',
+    intro: 'Le reporting devient un bon cas IA quand les données existent déjà. L’IA peut structurer et synthétiser, mais les chiffres doivent rester contrôlés.',
+    sections: [
+      { title: 'Aide possible', body: 'L’agent peut transformer des notes, tableaux ou informations fournies en synthèse claire, compte rendu ou liste de points à suivre.' },
+      { title: 'Limite importante', body: 'L’IA ne doit pas inventer de données, corriger une source fausse ou interpréter seule des résultats sensibles.' },
+      { title: 'Bon usage', body: 'Le bon test consiste à préparer des synthèses internes simples, puis à comparer le temps gagné avec le temps de relecture.' },
+    ],
+    cta: 'Analyser mes reportings',
+    taskHref: '/taches/reporting',
+    taskLabel: 'Voir la page reporting',
   },
   {
     slug: 'agent-ia-factures',
@@ -91,6 +157,8 @@ export const guides: Guide[] = [
       { title: 'Bon usage', body: 'Commencer par le pré-tri et la préparation des contrôles permet de réduire le risque tout en gagnant du temps.' },
     ],
     cta: 'Estimer le temps facture',
+    taskHref: '/taches/factures',
+    taskLabel: 'Voir la page factures',
   },
   {
     slug: 'ia-administrative-btp',
@@ -103,6 +171,8 @@ export const guides: Guide[] = [
       { title: 'Intérêt du scan', body: 'Le scan permet d’identifier si le volume administratif justifie un agent IA ou si une simple organisation suffit.' },
     ],
     cta: 'Scanner mon administratif BTP',
+    taskHref: '/secteurs/btp',
+    taskLabel: 'Voir le secteur BTP',
   },
   {
     slug: 'ia-administrative-transport',
@@ -115,6 +185,8 @@ export const guides: Guide[] = [
       { title: 'Objectif', body: 'Réduire le temps passé à préparer l’information sans automatiser aveuglément les décisions.' },
     ],
     cta: 'Scanner mes tâches logistiques',
+    taskHref: '/secteurs/transport-logistique',
+    taskLabel: 'Voir le secteur transport',
   },
   {
     slug: 'ia-administrative-nettoyage',
@@ -127,6 +199,8 @@ export const guides: Guide[] = [
       { title: 'Mise en place progressive', body: 'Un premier agent doit traiter une tâche simple, mesurable et vérifiable.' },
     ],
     cta: 'Scanner mon administratif nettoyage',
+    taskHref: '/secteurs/nettoyage-professionnel',
+    taskLabel: 'Voir le secteur nettoyage',
   },
 ];
 
