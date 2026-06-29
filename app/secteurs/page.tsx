@@ -34,11 +34,11 @@ const path = [
 ];
 
 const useCases = [
-  ['Devis', 'BTP, espaces verts, nettoyage, maintenance', 'Agent IA devis supervisé'],
-  ['Relances', 'Immobilier, formation, nettoyage, BTP', 'Agent IA relance'],
-  ['Documents', 'Transport, sécurité, immobilier, maintenance', 'Agent IA documents'],
-  ['Reporting', 'Agences, transport, sécurité, conseil', 'Agent IA reporting'],
-  ['Mails', 'Commerce, restauration, services, agences', 'Agent IA mails'],
+  ['Devis', 'BTP, espaces verts, nettoyage, maintenance', 'Agent IA devis supervisé', '/taches/devis'],
+  ['Relances', 'Immobilier, formation, nettoyage, BTP', 'Agent IA relance', '/taches/relances-clients'],
+  ['Documents', 'Transport, sécurité, immobilier, maintenance', 'Agent IA documents', '/taches/documents-entrants'],
+  ['Reporting', 'Agences, transport, sécurité, conseil', 'Agent IA reporting', '/taches/reporting'],
+  ['Mails', 'Commerce, restauration, services, agences', 'Agent IA mails', '/taches/emails-administratifs'],
 ];
 
 export const metadata = {
@@ -140,8 +140,12 @@ export default function SectorsPage() {
           <table className="premium-table">
             <thead><tr><th>Cas d’usage</th><th>Secteurs fréquents</th><th>Agent IA associé</th></tr></thead>
             <tbody>
-              {useCases.map(([useCase, sectorsText, agent]) => (
-                <tr key={useCase}><td>{useCase}</td><td>{sectorsText}</td><td>{agent}</td></tr>
+              {useCases.map(([useCase, sectorsText, agent, href]) => (
+                <tr key={useCase}>
+                  <td><Link href={href}>{useCase}</Link></td>
+                  <td>{sectorsText}</td>
+                  <td>{agent}</td>
+                </tr>
               ))}
             </tbody>
           </table>
